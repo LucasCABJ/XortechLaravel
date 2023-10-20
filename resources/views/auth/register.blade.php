@@ -1,16 +1,19 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
 
 @section('content')
 
 @component('components.navbar')
 @endcomponent
 
-<div class="container py-4">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <i class="fa-solid fa-align-left me-2"></i>{{ __('Join XorTech') }}
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -68,8 +71,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                <button type="submit" class="btn btn-th-primary text-white rounded-0">
+                                    {{ __('Register') }}<i class="fa-regular fa-pen-to-square ms-2"></i>
                                 </button>
                             </div>
                         </div>
