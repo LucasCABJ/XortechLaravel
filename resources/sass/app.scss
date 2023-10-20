@@ -37,3 +37,10 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
     outline: none;
     box-shadow: -1.8px 3px 0 1.5px rgba(map-get($custom-theme-colors, "th-info"), 0.9);
 }
+
+.form-control.is-invalid:focus {
+    transform: translate(2px, -2px);
+    border-color: rgba(#dc3545, 1);
+    outline: none;
+    box-shadow: -1.8px 3px 0 1.5px rgba(#dc3545, 1);
+}
