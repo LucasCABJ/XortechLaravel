@@ -1,0 +1,25 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// // Bootstrap variables and functions
+
+// @import 'bootstrap/scss/_functions';
+// @import 'bootstrap/scss/_variables';
+
+// // Custom Bootstrap variables
+
+// $custom-theme-colors: (
+//     "th-primary": #D83787,
+//     "th-secondary": #2A1B3D,
+//     "th-tertiary": #443182,
+//     "th-info": #7D62A0,
+//     "th-grey": #A4B3B6 
+// );
+
+// $theme-colours: map-merge($custom-theme-colors, $theme-colours);
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
