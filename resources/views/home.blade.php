@@ -3,7 +3,6 @@
 @section('content')
 
 @component('components.navbar')
-    
 @endcomponent
 
 <div class="container">

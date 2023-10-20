@@ -4,7 +4,7 @@
 // Variables
 @import 'variables';
 
-// // Bootstrap variables and functions
+// Bootstrap variables and functions
 
 @import '../bootstrap/scss/_functions';
 @import '../bootstrap/scss/_variables';
@@ -24,12 +24,16 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 // Bootstrap
 @import '../bootstrap/scss/bootstrap.scss';
 
+
+// Custom CSS + Bootstrap styles overriding
+
 .form-control {
-    transition: all 0.3s;   
+    transition: all 0.3s ease-in-out;   
 }
 
 .form-control:focus {
-    border-color: rgba(map-get($custom-theme-colors, "th-primary"), 0.5);
+    transform: translate(2px, -2px);
+    border-color: rgba(map-get($custom-theme-colors, "th-info"), 0.9);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(map-get($custom-theme-colors, "th-primary"), 0.5);
+    box-shadow: -1.8px 3px 0 1.5px rgba(map-get($custom-theme-colors, "th-info"), 0.9);
 }
