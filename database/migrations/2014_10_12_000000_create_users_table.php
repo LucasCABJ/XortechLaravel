@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            //foreign key
+            $table->unsignedBigInteger('cart_id')->nullable(); //carrito de compra se guarda entre sesiones
         });
     }
 
