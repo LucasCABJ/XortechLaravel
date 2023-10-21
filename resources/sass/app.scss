@@ -32,8 +32,20 @@ $form-check-input-focus-box-shadow: 0 0 0px 3px rgba(map-get($map: $custom-theme
 // Bootstrap
 @import '../bootstrap/scss/bootstrap.scss';
 
+// Fonts
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url(../fonts/Quicksand.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
 
 // Custom CSS + Bootstrap styles overriding
+
+* {
+    font-family: 'Quicksand', 'Nunito', 'comic-sans';
+}
 
 .form-control {
     transition: all 0.3s ease-in-out;   
