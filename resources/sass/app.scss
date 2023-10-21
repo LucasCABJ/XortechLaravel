@@ -21,6 +21,14 @@ $custom-theme-colors: (
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
+$form-check-input-checked-bg-color: map-get($map: $custom-theme-colors, $key: "th-primary");
+$form-check-input-checked-border-color: map-get($map: $custom-theme-colors, $key: "th-primary");
+$form-switch-focus-color: map-get($map: $custom-theme-colors, $key: "th-primary");
+$form-switch-focus-bg-image:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{rgba($form-switch-focus-color, 0.6)}'/></svg>");
+$form-check-input-focus-border: map-get($map: $custom-theme-colors, $key: "th-primary");
+$form-check-input-focus-box-shadow: 0 0 0px 3px rgba(map-get($map: $custom-theme-colors, $key: "th-primary"), 0.4);
+
+
 // Bootstrap
 @import '../bootstrap/scss/bootstrap.scss';
 

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('content')
 
 @component('components.navbar')
@@ -8,8 +10,10 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <i class="fa-solid fa-align-left me-2"></i>{{ __('Login') }}
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -45,8 +49,8 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
@@ -58,7 +62,7 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-th-primary text-white rounded-0">
-                                    {{ __('Login') }}
+                                    <i class="fa-solid fa-right-to-bracket me-2"></i>{{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))

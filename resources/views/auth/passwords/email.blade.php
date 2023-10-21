@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
+@section('title', 'Forgot password')
+
 @section('content')
-<div class="container">
+
+@component('components.navbar')
+@endcomponent
+
+
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -33,7 +40,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-th-primary text-white rounded-0">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
