@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $products = Product::where('active', true)
+            ->orderBy('name')
+            ->get();
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -22,64 +24,44 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $categories = Category::where('active', true)
+            ->orderBy('name')
+            ->get();
+        return view('product.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(ProductRequest $request): RedirectResponse
     {
-        //
+        Product::create($request->all());
+        return redirect()->route('product.index')->with('success', 'Product created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $producto)
+    public function show(Product $product): View
     {
-        //
+        return view('product.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $producto)
+    public function edit(Product $product): View
     {
-        //
+        $categories = Category::where('active', true)
+            ->orderBy('name')
+            ->get();
+        return view('product.edit', compact('product', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $producto)
+
+    public function update(ProductRequest $request, Product $product): RedirectResponse
     {
-        //
+        $product->update($request->all());
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $producto)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        $product->update(['active' => false]);
+        return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
     }
 }

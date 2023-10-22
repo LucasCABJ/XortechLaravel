@@ -6,9 +6,9 @@
         @csrf
         <div class="form-group">
             <label for="name">Category name</label>
-            <input type="text" name="name" id="name" class="form-control">
+            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
             <label for="description">Category Description</label>
-            <input type="text" name="description" id="description" class="form-control">
+            <input type="text" name="description" id="description" class="form-control" value="{{ old('description') }}">
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>

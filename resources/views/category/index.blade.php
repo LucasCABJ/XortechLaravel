@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href=" {{ route('category.create') }} ">Create Category</a>
+    <a href=" {{ route('category.create') }} ">Create Category</a> | <a href=" {{ route('product.index') }} ">Products</a>
     <ul>
         @forelse( $categories as $category)
             <li>
