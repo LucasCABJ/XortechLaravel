@@ -7,7 +7,7 @@
 @component('components.navbar')
 @endcomponent
 
-<div class="container mt-5">
+<div class="container mt-5" style="height: 100vh">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card p-5">

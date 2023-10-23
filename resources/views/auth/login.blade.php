@@ -7,7 +7,7 @@
 @component('components.navbar')
 @endcomponent
 
-<div class="container py-5">
+<div class="container py-5" style="min-height: 100vh">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm">
