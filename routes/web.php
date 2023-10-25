@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ProductController::class, 'home'])->name('home');
+
+Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
 
 Auth::routes();
 
