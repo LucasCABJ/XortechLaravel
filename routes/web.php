@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [ProductController::class, 'home'])->name('home');
+Route::get('/home', [ProductController::class, 'home'])->name('home');
 
 Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
