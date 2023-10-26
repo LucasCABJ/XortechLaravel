@@ -19,11 +19,6 @@ class ProductController extends Controller
         return view('product.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(): View
     {
         $categories = Category::where('active', true)
@@ -31,7 +26,6 @@ class ProductController extends Controller
             ->get();
         return view('product.create', compact('categories'));
     }
-
 
     public function store(ProductRequest $request): RedirectResponse
     {
@@ -64,11 +58,7 @@ class ProductController extends Controller
         $product->update(['active' => false]);
         return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
     }
-use Illuminate\Http\Request;
 
-class ProductController extends Controller
-{
-    //
     function home() {
         return view('product.home');
     }
