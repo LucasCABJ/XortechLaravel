@@ -64,4 +64,13 @@ class ProductController extends Controller
         $product->update(['active' => false]);
         return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
     }
+use Illuminate\Http\Request;
+
+class ProductController extends Controller
+{
+    //
+    function home() {
+        return view('product.home');
+    }
+
 }

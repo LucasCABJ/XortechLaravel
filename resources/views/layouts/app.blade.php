@@ -19,6 +19,8 @@
 <body>
     <div id="app">
         @yield('content')
+        @component('components.footer')
+        @endcomponent
     </div>
 </body>
 </html>

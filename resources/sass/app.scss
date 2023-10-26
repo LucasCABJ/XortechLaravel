@@ -32,8 +32,20 @@ $form-check-input-focus-box-shadow: 0 0 0px 3px rgba(map-get($map: $custom-theme
 // Bootstrap
 @import '../bootstrap/scss/bootstrap.scss';
 
+// Fonts
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url(../fonts/Quicksand.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
 
 // Custom CSS + Bootstrap styles overriding
+
+* {
+    font-family: 'Quicksand', 'Nunito', 'comic-sans';
+}
 
 .form-control {
     transition: all 0.3s ease-in-out;   
@@ -51,4 +63,71 @@ $form-check-input-focus-box-shadow: 0 0 0px 3px rgba(map-get($map: $custom-theme
     border-color: rgba(#dc3545, 1);
     outline: none;
     box-shadow: -1.8px 3px 0 1.5px rgba(#dc3545, 1);
+}
+
+// HOME PRODUCT TEST
+
+/*CSS TARJETA*/
+
+.tarjeta {
+    transition: all .2s ease-in-out;
+    background-color: #F1F1F1;
+}
+
+.tarjeta-descripcion {
+    transition: all .2s ease-in-out;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+}
+
+.tarjeta:hover>.tarjeta-descripcion {
+    box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Circulos Parlante */
+
+.parlante__container:hover .parlante__img {
+    transform: scale(1.02) translateY(-5px);
+}
+
+.parlante__img {
+    filter: drop-shadow(-5px 35px 15px rgba(0, 0, 0, 0.3));
+    transition: all .3s ease-in-out;
+}
+
+.parlante__circulo {
+    opacity: 0.3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+    border-radius: 50%;
+    border: 1px solid #f1f1f1;
+}
+
+.parlante__circulo2 {
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    border-radius: 50%;
+    border: 1px solid #f1f1f1;
+}
+
+/* BANNER MONITOR */
+
+.monitor-banner {
+    padding: 150px;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('./img/monitorbanner.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    transition: all .6s ease-in-out;
+}
+
+.monitor-banner:hover {
+    background-size: calc(cover - 150px);
 }
