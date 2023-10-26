@@ -10,7 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-            
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}"><i class="fa-solid fa-house me-2"></i>{{ __('Home') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('category.index') }}"><i class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('product.index') }}"><i class="fa-solid fa-cog me-2"></i>{{ __('Product') }}</a>
+                </li>
+
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -36,7 +45,7 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('user.settings') }}">Usuarios</a>
-                            
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
