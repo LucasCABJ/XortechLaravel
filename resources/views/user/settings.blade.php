@@ -13,10 +13,25 @@
 
                 <div class="card-body p-5">
 
-                    <h1 class="text-center mb-5">{{ __('User Settings') }}</h1>
+                    <h1 class="text-center mb-5">{{ Auth::user()->name . __("'s User Settings") }}</h1>
 
-                    <form method="POST" action="{{ route('register') }}">
+                    <img src="{{ asset(Auth::user()->image) }}" alt="Current Profile Picture" class="img-fluid">
+
+                    <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
                         @csrf
+
+                        <div class="row mb-3">
+                            <div class="col-lg-8 offset-lg-2">
+                                <label for="form-label">Profile Pic</label>
+                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror fs-4" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus placeholder="{{ __('Profile Pic') }}">
+
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
