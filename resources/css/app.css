@@ -1,0 +1,13 @@
+/*VARIABLES COLORES*/
+:root {
+    --primario: #D83787;
+    --secundario: #443182;
+    --terciario: #2a1b3d;
+    --suave: #7d62a0;
+    --gris: #a4b3b6;
+    --dark: #171717;
+}
+
+body {
+    overflow-x: hidden;
+}

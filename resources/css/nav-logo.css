@@ -1,0 +1,130 @@
+/* Estilo para el contenedor del logo */
+.navbar-brand {
+    transition: .5s ease-in-out;
+    font-size: 22px;
+}
+
+.logo {
+    position: relative;
+    top: 2px;
+    width: 20px; /* Ancho del contenedor */
+    height: 20px; /* Alto del contenedor */
+    border-radius: 50%;
+    border: 1.5px solid var(--suave); /* Borde del contenedor */
+    margin: 0;
+    display: inline-flex;
+    transition: .5s ease-in-out;
+}
+
+/* Estilo para las líneas horizontales y verticales */
+.logo-icon {
+    /*position: absolute;*/
+    width: 20px; /* Ancho de cada línea */
+    height: 1.5px; /* Altura de las líneas */
+    background-color: var(--primario); /* Color de las líneas */
+}
+
+/* Estilo para la línea horizontal */
+.hor-bar1 {
+    position: absolute;
+    margin-top: 0; /* Ajusta la posición vertical de la línea horizontal */
+}
+
+.hor-bar2 {
+    position: absolute;
+    z-index: 2;
+    margin-top: 0; /* Ajusta la posición vertical de la línea horizontal */
+    transition: .5s ease-in-out;
+
+}
+
+/* Estilo para la línea vertical */
+.ver-bar1 {
+    position: absolute;
+    transform: rotate(90deg); /* Rota la línea vertical 90 grados */
+    margin-top: 0; /* Ajusta la posición vertical de la línea vertical */
+}
+
+.ver-bar2 {
+    position: absolute;
+    z-index: 2;
+    transform: rotate(90deg); /* Rota la línea vertical 90 grados */
+    margin-top: 0; /* Ajusta la posición vertical de la línea vertical */
+    transition: .5s ease-in-out;
+}
+
+.navbar-brand:hover {
+    margin-left: 20px;
+}
+
+.navbar-brand:hover .logo {
+    border: 1.5px solid #f1f1f1;
+}
+
+.navbar-brand:hover .erre {
+    width: 0.875rem;
+}
+
+.navbar-brand:hover .ver-bar2 {
+    position: absolute;
+    z-index: 2;
+    transform: translateX(-20px) rotate(-45deg) ;
+    margin-top: 0;
+    background-color: #f1f1f1;
+}
+
+.navbar-brand:hover .hor-bar2 {
+    position: absolute;
+    z-index: 2;
+    transform: translateX(-20px) rotate(-135deg) ;
+    margin-top: 0px;
+    background-color: #f1f1f1;
+}
+
+.erre {
+    transition: 300ms width;
+    vertical-align: bottom;
+    width: 0;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: var(--primario) 0 0 15px;
+    }
+
+    50% {
+        text-shadow: var(--primario) 0 0 3px;
+    }
+
+    100% {
+        text-shadow: var(--primario) 0 0 15px;
+    }
+}
+
+
+/*.navLink {*/
+/*    color: #f1f1f1;*/
+/*}*/
+
+.navLink:hover {
+    color: var(--primario);
+    text-shadow: var(--primario) 0 0 10px;
+}
+
+a.navLink {
+    color: #f1f1f1;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+a.navLink.activo {
+    color: var(--primario);
+    font-weight: 600;
+    animation: glow 2s infinite;
+}

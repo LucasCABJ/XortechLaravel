@@ -1,23 +1,30 @@
 <nav class="navbar bg-th-secondary navbar-expand-md shadow-sm" data-bs-theme="dark">
-    <div class="container">
-        <a class="navbar-brand fs-1" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+    <div class="container d-flex justify-content-between">
+        <a class="navbar-brand text-light" href="#">
+                <span class="logo justify-content-center align-items-center p-0">
+                    <span class="logo-icon hor-bar1"></span>
+                    <span class="logo-icon ver-bar1"></span>
+                    <span class="logo-icon hor-bar2"></span>
+                    <span class="logo-icon ver-bar2"></span>
+                </span><span class="erre">R</span>Tech
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler d-flex d-lg-none collapsed flex-column justify-content-around p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="toggler-icon top-bar"></span>
+            <span class="toggler-icon mid-bar"></span>
+            <span class="toggler-icon bot-bar"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent" style="flex-grow: 0">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}"><i class="fa-solid fa-house me-2"></i>{{ __('Home') }}</a>
+                    <a class="navLink" href="{{ route('home') }}"><i class="fa-solid fa-house me-2"></i>{{ __('Home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category.index') }}"><i class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
+                    <a class="navLink" href="{{ route('category.index') }}"><i class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.index') }}"><i class="fa-solid fa-cog me-2"></i>{{ __('Product') }}</a>
+                    <a class="navLink" href="{{ route('product.index') }}"><i class="fa-solid fa-cog me-2"></i>{{ __('Product') }}</a>
                 </li>
 
             </ul>
