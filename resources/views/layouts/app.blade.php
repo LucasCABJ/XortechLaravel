@@ -14,7 +14,14 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts and SCSS -->
-    @vite(['resources/sass/app.scss', 'resources/fontawesome/css/all.min.css','resources/js/app.js'])
+    @vite([
+        'resources/sass/app.scss',
+        'resources/fontawesome/css/all.min.css',
+        'resources/js/app.js',
+        'resources/css/app.css',
+        'resources/css/nav-toggler.css',
+        'resources/css/nav-logo.css',
+        ])
 </head>
 <body>
     <div id="app">

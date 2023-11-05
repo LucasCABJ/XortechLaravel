@@ -8,7 +8,6 @@
 @endcomponent
 
     <!--hero-->
-
     <div class="container-fluid bg-dark hero p-5">
         <div class="container">
             <div class="row align-items-center">
@@ -67,13 +66,19 @@
                         <img src="{{ asset('assets/img/mouse1.png') }}" alt="Perifericos Categoria" class="img-fluid tarjeta-img">
                     </div>
                     <div class="text-center rounded-2 pt-5 pb-4 w-100 tarjeta-descripcion">
-                        <h3 class="mb-4 mt-5 pt-5">Perifericos</h3>
+                        <h3 class="mb-4 mt-5 pt-5">Mouse</h3>
                         <a href="#" class="btn btn-th-info text-white rounded-0">Comprar</a>
                     </div>
                 </div>
             </div>
 
         </article>
+        {{--<article class="row py-5">
+            @foreach($categories as $category)
+                <x-category-card :image="asset($category->image)" :alt="$category->name" :title="$category->name" />
+            @endforeach
+        </article>--}}
+
         <!-- BANNER PARLANTE -->
         <article class="row">
             <div class="col-12 p-0 overflow-hidden" style="background-color: #7d62a0;">

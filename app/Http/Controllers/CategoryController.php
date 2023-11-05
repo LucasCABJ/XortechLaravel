@@ -10,9 +10,26 @@ use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
+    public function getCategoryCardData(): View
+    {
+        $categories = Category::take(3)
+            ->get()
+            ->where('active', true);
+
+        return view('CategoryCard', compact('categories'));
+    }
+
     public function index(): View
     {
-        $categories = Category::where('active',true)
+        $categories = Category::where('active', true)
+            //->orderBy('name')
+            ->get();
+        return view('category.index', compact('categories'));
+    }
+
+    public function indexVendor(): View
+    {
+        $categories = Category::get()
             ->orderBy('name')
             ->get();
         return view('category.index', compact('categories'));

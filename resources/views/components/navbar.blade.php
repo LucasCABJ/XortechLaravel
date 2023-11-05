@@ -1,45 +1,63 @@
 <nav class="navbar bg-th-secondary navbar-expand-md shadow-sm" data-bs-theme="dark">
-    <div class="container">
-        <a class="navbar-brand fs-1" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+    <div class="container d-flex justify-content-between">
+        <a class="navbar-brand text-light" href="#">
+                <span class="logo justify-content-center align-items-center p-0">
+                    <span class="logo-icon hor-bar1"></span>
+                    <span class="logo-icon ver-bar1"></span>
+                    <span class="logo-icon hor-bar2"></span>
+                    <span class="logo-icon ver-bar2"></span>
+                </span><span class="erre">R</span>Tech
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler d-flex d-lg-none collapsed flex-column justify-content-around p-0" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="toggler-icon top-bar"></span>
+            <span class="toggler-icon mid-bar"></span>
+            <span class="toggler-icon bot-bar"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
+        <div class="collapse navbar-collapse text-center mx-auto" id="navbarSupportedContent" style="flex-grow: 0">
+            <!-- Center Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}"><i class="fa-solid fa-house me-2"></i>{{ __('Home') }}</a>
+                    <a class="navLink {{ request()->routeIs('home') ? 'activo' : '' }}" href="{{ route('home') }}">
+                        <i class="fa-solid fa-house me-2"></i>{{ __('Home') }}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category.index') }}"><i class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
+                    <a class="navLink {{ request()->routeIs('category.index') ? 'activo' : '' }}" href="{{ route('category.index') }}"><i
+                            class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.index') }}"><i class="fa-solid fa-cog me-2"></i>{{ __('Product') }}</a>
+                    <a class="navLink {{ request()->routeIs('product.index') ? 'activo' : '' }}" href="{{ route('product.index') }}"><i
+                            class="fa-solid fa-cog me-2"></i>{{ __('Product') }}</a>
                 </li>
 
             </ul>
+        </div>
+        <div>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto fs-5">
+            <ul class="navbar-nav mx-auto fs-5 text-end">
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-arrow-right-to-bracket me-2"></i>{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}"><i
+                                    class="fa-solid fa-arrow-right-to-bracket me-2"></i>{{ __('Login') }}</a>
                         </li>
                     @endif
 
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}"><i class="fa-solid fa-pen-to-square me-2"></i>{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}"><i
+                                    class="fa-solid fa-pen-to-square me-2"></i>{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </a>
 
