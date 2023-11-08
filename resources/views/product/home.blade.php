@@ -8,7 +8,7 @@
 @endcomponent
 
     <!--hero-->
-    <div class="container-fluid bg-dark hero p-5">
+    <div class="container-fluid bg-striped hero p-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 d-flex flex-column justify-content-start align-items-start p-5">

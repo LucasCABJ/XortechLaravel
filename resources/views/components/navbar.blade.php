@@ -1,4 +1,4 @@
-<nav class="navbar bg-th-secondary navbar-expand-md shadow-sm" data-bs-theme="dark">
+<nav class="navbar bg-th-secondary navbar-expand-md shadow-sm border-th-primary border-bottom" data-bs-theme="dark">
     <div class="container d-flex justify-content-between">
         <a class="navbar-brand text-light" href="#">
                 <span class="logo justify-content-center align-items-center p-0">
@@ -16,27 +16,26 @@
             <span class="toggler-icon bot-bar"></span>
         </button>
 
-        <div class="collapse navbar-collapse text-center mx-auto" id="navbarSupportedContent" style="flex-grow: 0">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-grow: 0">
             <!-- Center Of Navbar -->
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto navbar-center">
                 <li class="nav-item">
                     <a class="navLink {{ request()->routeIs('home') ? 'activo' : '' }}" href="{{ route('home') }}">
                         <i class="fa-solid fa-house me-2"></i>{{ __('Home') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="navLink {{ request()->routeIs('category.index') ? 'activo' : '' }}" href="{{ route('category.index') }}"><i
+                    <a class="navLink {{ request()->routeIs('category.index') ? 'activo' : '' }}"
+                       href="{{ route('category.index') }}"><i
                             class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navLink {{ request()->routeIs('product.index') ? 'activo' : '' }}" href="{{ route('product.index') }}"><i
+                    <a class="navLink {{ request()->routeIs('product.index') ? 'activo' : '' }}"
+                       href="{{ route('product.index') }}"><i
                             class="fa-solid fa-cog me-2"></i>{{ __('Product') }}</a>
                 </li>
 
             </ul>
-        </div>
-        <div>
-
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav mx-auto fs-5 text-end">
                 <!-- Authentication Links -->
@@ -57,7 +56,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </a>
 

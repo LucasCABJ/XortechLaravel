@@ -19,8 +19,8 @@
         'resources/fontawesome/css/all.min.css',
         'resources/js/app.js',
         'resources/css/app.css',
-        'resources/css/nav-toggler.css',
-        'resources/css/nav-logo.css',
+        'resources/css/navbar.css',
+        'resources/css/bg-striped.css',
         ])
 </head>
 <body>

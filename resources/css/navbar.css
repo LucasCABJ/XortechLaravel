@@ -1,3 +1,81 @@
+.navbar-toggler {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+
+/* Estilo para el botón expandido */
+.navbar-toggler:not(.collapsed) {
+    background-color: transparent; /* Mantén el fondo transparente cuando está expandido */
+    border: 2px solid var(--primario); /* Muestra el borde cuando está expandido */
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler span {
+    margin: 0;
+    padding: 0;
+}
+
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--suave);
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.mid-bar {
+    margin-top: 0px;
+}
+
+/*Estado abierto*/
+.navbar-toggler .top-bar {
+    margin-top: 0px;
+    transform: rotate(-90deg);
+}
+
+.navbar-toggler .mid-bar {
+    margin-top: 0px;
+}
+
+.navbar-toggler .bot-bar {
+    margin-top: 0px;
+    transform: rotate(-90deg);
+}
+
+/*Estado collapsed*/
+.navbar-toggler.collapsed .top-bar {
+    margin-top: -20px;
+    transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .mid-bar {
+    margin-top: 0px;
+    transform: rotate(0deg);
+}
+
+
+.navbar-toggler.collapsed .bot-bar {
+    margin-top: 20px;
+    transform: rotate(0deg);
+}
+
 /* Estilo para el contenedor del logo */
 .navbar-brand {
     transition: .5s ease-in-out;
@@ -68,7 +146,7 @@
 .navbar-brand:hover .ver-bar2 {
     position: absolute;
     z-index: 2;
-    transform: translateX(-20px) rotate(-45deg) ;
+    transform: translateX(-20px) rotate(-45deg);
     margin-top: 0;
     background-color: #f1f1f1;
 }
@@ -76,7 +154,7 @@
 .navbar-brand:hover .hor-bar2 {
     position: absolute;
     z-index: 2;
-    transform: translateX(-20px) rotate(-135deg) ;
+    transform: translateX(-20px) rotate(-135deg);
     margin-top: 0px;
     background-color: #f1f1f1;
 }
@@ -107,11 +185,6 @@
     }
 }
 
-
-/*.navLink {*/
-/*    color: #f1f1f1;*/
-/*}*/
-
 .navLink:hover {
     color: var(--primario);
     text-shadow: var(--primario) 0 0 10px;
@@ -121,10 +194,18 @@ a.navLink {
     color: #f1f1f1;
     text-decoration: none;
     margin: 0 10px;
+    font-size: 1.2rem;
 }
 
 a.navLink.activo {
     color: var(--primario);
-    font-weight: 600;
+    font-weight: 500;
     animation: glow 2s infinite;
+}
+
+/*centrar links*/
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
 }
