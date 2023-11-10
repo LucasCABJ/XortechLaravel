@@ -21,6 +21,7 @@
         'resources/css/app.css',
         'resources/css/navbar.css',
         'resources/css/bg-striped.css',
+        'resources/css/cart.css',
         ])
 </head>
 <body>
