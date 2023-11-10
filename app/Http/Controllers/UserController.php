@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -19,16 +20,25 @@ class UserController extends Controller
     function update(Request $request)
     {
 
+        if (isset($request->password)) {
+            $request->validate([
+                'password' => 'confirmed|min:8'
+            ]);
+        }
+
         $user = User::find(Auth::user()->id);
+        $imgchange = false;
 
         if ($request->file('image')) {
-            $filename = time().$request->file('image')->getClientOriginalName();
+            $imgchange = true;
+            $filename = time() . $request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('images/usup'), $filename);
         }
 
         $user->update([
             'name' => ($request->name != null) ? $request->name : $user->name,
-            "image" => (isset($filename)) ? $filename : ''
+            'image' => ($imgchange) ? $filename : $user->image,
+            'password' => (isset($request->password)) ? Hash::make($request->password) : $user->password
         ]);
 
         return redirect()->route('home');
