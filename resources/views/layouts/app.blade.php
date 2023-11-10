@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,18 +15,12 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts and SCSS -->
-    @vite([
-        'resources/sass/app.scss',
-        'resources/fontawesome/css/all.min.css',
-        'resources/js/app.js',
-        'resources/css/app.css',
-        'resources/css/navbar.css',
-        'resources/css/bg-striped.css',
-        'resources/css/cart.css',
-        ])
-    
+    @vite(['resources/sass/app.scss', 'resources/fontawesome/css/all.min.css', 'resources/js/app.js', 'resources/css/app.css', 'resources/css/navbar.css', 'resources/css/bg-striped.css', 'resources/css/cart.css'])
+
     @yield('headextra')
 </head>
+@yield('modals')
+
 <body>
     <div id="app">
         @yield('content')
@@ -34,4 +29,5 @@
     </div>
     @yield('scripts')
 </body>
+
 </html>

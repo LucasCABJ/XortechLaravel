@@ -4,10 +4,12 @@
     @vite(['node_modules/jquery/dist/jquery.min.js'])
 @endsection
 
+@section('modals')
+@endsection
+
 @section('content')
     @component('components.navbar')
     @endcomponent
-
 
     <div class="container py-5" style="min-height: 100vh">
         <div class="row">
@@ -31,6 +33,33 @@
                                         <h1 class="text-th-secondary">{{ Auth::user()->name }}</h1>
                                         <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">Administrador</h3>
 
+                                        <form action="#" id="changePasswordForm" class="d-none">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <input id="password" type="password"
+                                                        class="form-control @error('password') is-invalid @enderror fs-4"
+                                                        name="password" autocomplete="new-password"
+                                                        placeholder="{{ __('Password') }}">
+
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <input id="password-confirm" type="password" class="form-control fs-4"
+                                                        name="password_confirmation" autocomplete="new-password"
+                                                        placeholder="{{ __('Confirm password') }}">
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <button type="button" id="changePasswordBtn" data-micromodal-trigger="modal-1"
+                                            class="d-block py-2 px-3 fs-5 btn btn-th-primary rounded-0 text-white">{{ __('Reset Password') }}</button>
 
                                     </div>
                                 </div>
@@ -98,24 +127,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
-                                    {{-- <div class="row mb-3">
-                            <div class="col-12">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror fs-4" name="password" autocomplete="new-password" placeholder="{{ __('Password') }}">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <input id="password-confirm" type="password" class="form-control fs-4" name="password_confirmation" autocomplete="new-password" placeholder="{{ __('Confirm password') }}">
-                            </div>
-                        </div> --}}
 
                                     <div class="row mb-0">
                                         <div class="col-12">
