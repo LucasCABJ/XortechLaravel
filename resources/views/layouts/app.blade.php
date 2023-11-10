@@ -23,6 +23,8 @@
         'resources/css/bg-striped.css',
         'resources/css/cart.css',
         ])
+    
+    @yield('headextra')
 </head>
 <body>
     <div id="app">
@@ -30,5 +32,6 @@
         @component('components.footer')
         @endcomponent
     </div>
+    @yield('scripts')
 </body>
 </html>
