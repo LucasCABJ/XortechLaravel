@@ -54,6 +54,10 @@
                         </li>
                     @endif
                 @else
+                    <li>
+                        <a class="nav-link" href="{{ route('shoppingCart.index') }}"><i
+                                class="fa-solid fa-shopping-cart me-2"></i></a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

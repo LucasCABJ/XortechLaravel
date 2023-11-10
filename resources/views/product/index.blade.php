@@ -26,6 +26,11 @@
                             <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
                         </td>
                         <td>
+                            <form action="{{ route('shoppingCart.addProduct') }}" method="POST" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="btn btn-outline-primary">Add to cart</button>
+                            </form>
                             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('product.destroy', $product->id) }}" method="POST" class="d-inline">
                                 @csrf

@@ -6,17 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 //use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\HomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/home', [ProductController::class, 'home'])->name('home');
 
@@ -26,11 +18,13 @@ Route::post('/user/update', [UserController::class, 'update'])->name('user.updat
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
 
+Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
+Route::post('/shoppingCart/addProduct', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 
-
-
-
+Route::put('/shoppingCart/increaseQuantity/{shoppingCart}', [ShoppingCartController::class, 'increaseQuantity'])->name('shoppingCart.increaseQuantity');
+Route::put('/shoppingCart/decreaseQuantity/{shoppingCart}', [ShoppingCartController::class, 'decreaseQuantity'])->name('shoppingCart.decreaseQuantity');
+Route::delete('/shoppingCart/emptyCart', [ShoppingCartController::class, 'emptyCart'])->name('shoppingCart.emptyCart');
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
