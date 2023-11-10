@@ -15,15 +15,15 @@
 
                     <h1 class="text-center mb-5">{{ Auth::user()->name . __("'s User Settings") }}</h1>
 
-                    <img src="{{ asset(Auth::user()->image) }}" alt="Current Profile Picture" class="img-fluid">
+                    <img src="{{ asset('./images/usup/'.Auth::user()->image) }}" alt="Current Profile Picture" class="img-fluid">
 
                     <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
                         @csrf
-
+                        @method('PUT')
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
                                 <label for="form-label">Profile Pic</label>
-                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror fs-4" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus placeholder="{{ __('Profile Pic') }}">
+                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror fs-4" name="image" value="{{ old('image') }}" autocomplete="image" autofocus placeholder="{{ __('Profile Pic') }}">
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
 
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror fs-4" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Name') }}">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror fs-4" name="name" value="{{ Auth::user()->name }}" autocomplete="name" autofocus placeholder="{{ __('Name') }}">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
 
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror fs-4" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email') }}">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror fs-4" name="email" value="{{ Auth::user()->email }}" autocomplete="email" placeholder="{{ __('Email') }}">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
 
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror fs-4" name="password" required autocomplete="new-password" placeholder="{{ __('Password') }}">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror fs-4" name="password" autocomplete="new-password" placeholder="{{ __('Password') }}">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
 
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
-                                <input id="password-confirm" type="password" class="form-control fs-4" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm password') }}">
+                                <input id="password-confirm" type="password" class="form-control fs-4" name="password_confirmation" autocomplete="new-password" placeholder="{{ __('Confirm password') }}">
                             </div>
                         </div>
 

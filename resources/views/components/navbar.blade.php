@@ -1,6 +1,6 @@
 <nav class="navbar bg-th-secondary navbar-expand-md shadow-sm border-th-primary border-bottom" data-bs-theme="dark">
     <div class="container d-flex justify-content-between">
-        <a class="navbar-brand text-light" href="#">
+        <a class="navbar-brand text-light" href="{{ route('home') }}">
                 <span class="logo justify-content-center align-items-center p-0">
                     <span class="logo-icon hor-bar1"></span>
                     <span class="logo-icon ver-bar1"></span>
@@ -65,7 +65,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('user.settings') }}">Usuarios</a>
+                            <a class="dropdown-item" href="{{ route('user.settings') }}">{{ __('Settings') }}</a>
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

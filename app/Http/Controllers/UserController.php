@@ -19,13 +19,16 @@ class UserController extends Controller
     function update(Request $request)
     {
 
-        $filename = $request->file('image')->getClientOriginalName();
-        $savedpath = $request->file('image')->storeAs('profilepics', $filename, 'public');
-
         $user = User::find(Auth::user()->id);
 
+        if ($request->file('image')) {
+            $filename = time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images/usup'), $filename);
+        }
+
         $user->update([
-            "image" => 'storage/' . $savedpath
+            'name' => ($request->name != null) ? $request->name : $user->name,
+            "image" => (isset($filename)) ? $filename : ''
         ]);
 
         return redirect()->route('home');

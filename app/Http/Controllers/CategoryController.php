@@ -29,6 +29,7 @@ class CategoryController extends Controller
 
     public function indexVendor(): View
     {
+
         $categories = Category::get()
             ->orderBy('name')
             ->get();

@@ -13,7 +13,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/home', [ProductController::class, 'home'])->name('home');
 
 Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
-Route::post('/user/update', [UserController::class, 'update'])->name('user.update');
+Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
 
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
