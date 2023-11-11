@@ -14,6 +14,7 @@ Route::get('/home', [ProductController::class, 'home'])->name('home');
 
 Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
 Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+Route::put('user/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
 
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);

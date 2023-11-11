@@ -17,6 +17,22 @@ class UserController extends Controller
         return view('user.settings');
     }
 
+    function updatePassword(Request $request)
+    {
+
+        $request->validate([
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('user.settings')->with('passwordUpdated', true);
+    }
+
     function update(Request $request)
     {
 

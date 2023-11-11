@@ -11,6 +11,10 @@
     @component('components.navbar')
     @endcomponent
 
+    @if (Session::has('passwordUpdated'))
+        @vite(['resources/js/sucessPasswordUpdate.js'])
+    @endif
+
     <div class="container py-5" style="min-height: 100vh">
         <div class="row">
             <a href="{{ route('home') }}" class="col-md-8 offset-md-2 pb-3 text-decoration-none link-secondary"><-
@@ -33,7 +37,10 @@
                                         <h1 class="text-th-secondary">{{ Auth::user()->name }}</h1>
                                         <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">Administrador</h3>
 
-                                        <form action="#" id="changePasswordForm" class="d-none">
+                                        <form action="{{ route('user.update_password') }}" method="POST"
+                                            id="changePasswordForm" class="d-none p-3">
+                                            @csrf
+                                            @method('PUT')
                                             <div class="row mb-3">
                                                 <div class="col-12">
                                                     <input id="password" type="password"
@@ -42,7 +49,7 @@
                                                         placeholder="{{ __('Password') }}">
 
                                                     @error('password')
-                                                        <span class="invalid-feedback" role="alert">
+                                                        <span class="invalid-feedback text-left" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
@@ -56,6 +63,8 @@
                                                         placeholder="{{ __('Confirm password') }}">
                                                 </div>
                                             </div>
+                                            <button type="submit"
+                                                class="btn btn-th-primary text-white fs-3 rounded-0">{{ __('Update Password') }}</button>
                                         </form>
 
                                         <button type="button" id="changePasswordBtn" data-micromodal-trigger="modal-1"
