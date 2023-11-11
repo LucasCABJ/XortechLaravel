@@ -57,6 +57,6 @@ class UserController extends Controller
             'password' => (isset($request->password)) ? Hash::make($request->password) : $user->password
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('user.settings')->with('passwordUpdated', true);
     }
 }

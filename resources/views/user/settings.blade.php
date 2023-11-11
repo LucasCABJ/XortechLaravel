@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('Settings'))
+
 @section('headextra')
     @vite(['node_modules/jquery/dist/jquery.min.js'])
 @endsection
@@ -27,10 +29,17 @@
                                 <div class="row">
                                     <div class="col-lg-5 d-lg-block d-flex justify-content-center align-items-center">
                                         <div class="rounded" style="aspect-ratio : 1 / 1;">
-                                            <img src="{{ asset('./images/usup/' . Auth::user()->image) }}"
-                                                class="rounded border border-th-primary border-2"
+                                            @if(file_exists(public_path('images/usup/' . Auth::user()->image)))
+                                            <img src="{{ asset('images/usup/' . Auth::user()->image) }}"
+                                                class="rounded border border-th-grey border-2"
                                                 alt="Current Profile Picture"
                                                 style="height: 100%; width:100%; object-fit:cover">
+                                            @else
+                                            <img src="{{ asset('assets/img/default_pic.jpg') }}"
+                                                class="rounded border border-th-grey border-2"
+                                                alt="Current Profile Picture"
+                                                style="height: 100%; width:100%; object-fit:cover">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-7 pt-3">
@@ -121,7 +130,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
+                                    <div class="row mb-5">
                                         <div class="col-12">
                                             <label for="email" class='form-label'>Email</label>
                                             <input id="email" type="email"
