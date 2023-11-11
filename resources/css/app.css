@@ -14,5 +14,8 @@ body {
 
 .qty{
     width: 50px;
+}
 
+.vh-50{
+    max-height: 65vh;
 }
