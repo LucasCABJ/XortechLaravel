@@ -23,17 +23,18 @@ class ShoppingCartController extends Controller
     {
         $product = Product::find($request->product_id);
         $user = Auth::user();
+        $quantity = $request->quantity ? $request->quantity : 1;
         $shoppingCart = ShoppingCart::where('user_id', $user->id)
             ->where('product_id', $product->id)
             ->first();
         if ($shoppingCart) {
-            $shoppingCart->quantity += 1;
+            $shoppingCart->quantity += $quantity;
             $shoppingCart->save();
         } else {
             ShoppingCart::create([
                 'user_id' => $user->id,
                 'product_id' => $product->id,
-                'quantity' => 1,
+                'quantity' => $quantity,
             ]);
         }
         return redirect()->route('shoppingCart.index');
