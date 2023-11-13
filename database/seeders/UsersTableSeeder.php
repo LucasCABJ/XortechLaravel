@@ -20,13 +20,11 @@ class UsersTableSeeder extends Seeder
             'name' => 'Juani',
             'email' => 'juan.pardo@davinci.edu.ar',
             'password' => Hash::make('12345678'),
-            'image' => 'images/users/juan.jpg',
         ]);
         User::create([
             'name' => 'Lucas',
             'email' => 'lucas.caraballo@davinci.edu.ar',
             'password' => Hash::make('12345678'),
-            'image' => 'images/users/lucas.jpg',
         ]);
     }
 }

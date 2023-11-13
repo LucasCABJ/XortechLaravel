@@ -64,10 +64,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // Crea el usuario
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Crea la relación polimórfica en la tabla de imágenes con la imagen por defecto
+        $user->images()->create([
+            'url' => 'assets/img/default-male.png',
+        ]);
+
+        return $user;
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('short_desc', 255);
             $table->text('long_desc');
-            $table->string('main_image', 100);
+            /*$table->string('main_image', 100);*/
             $table->decimal('price', 10, 2);
             $table->boolean('active')->default(true);
             $table->timestamps();
