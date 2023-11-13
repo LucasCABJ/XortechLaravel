@@ -15,7 +15,18 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts and SCSS -->
-    @vite(['resources/sass/app.scss', 'resources/fontawesome/css/all.min.css', 'resources/js/app.js', 'resources/css/app.css', 'resources/css/navbar.css', 'resources/css/bg-striped.css', 'resources/css/cart.css'])
+    @vite([
+        'resources/sass/app.scss',
+        'resources/fontawesome/css/all.min.css',
+        'resources/js/app.js',
+        'resources/js/jquery-3.7.1.js',
+        'resources/css/app.css',
+        'resources/css/navbar.css',
+        'resources/css/bg-striped.css',
+        'resources/css/cart.css',
+        'resources/js/quantity-input-handler.js',
+        'resources/js/bootstrap.js'
+        ])
 
     @yield('headextra')
 </head>

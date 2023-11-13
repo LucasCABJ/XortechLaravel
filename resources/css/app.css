@@ -12,10 +12,24 @@ body {
     overflow-x: hidden;
 }
 
-.qty{
+.qty {
     width: 50px;
 }
 
-.vh-50{
-    max-height: 65vh;
+.img-cover {
+    object-fit: cover;
+    width: 100%; /* Asegura que la imagen ocupe tode el ancho del contenedor */
+    height: 100%; /* Asegura que la imagen ocupe tode el alto del contenedor */
+}
+
+.img-container {
+    position: relative; /* Establece el posicionamiento relativo en el contenedor */
+    aspect-ratio: auto 1 / 1;
+    overflow: hidden; /* Evita que las imágenes se desborden */
+}
+
+.carousel-item img {
+    position: absolute; /* Establece el posicionamiento absoluto para las imágenes en cada slide */
+    top: 0;
+    left: 0;
 }
