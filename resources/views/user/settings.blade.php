@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-lg-5 d-lg-block d-flex justify-content-center align-items-center">
                                 <div class="rounded" style="aspect-ratio : 1 / 1;">
-                                    <img src="{{ asset(Auth::user()->images->url) }}"
+                                    <img src="#"
                                          class="rounded border border-th-grey border-2"
                                          alt="Current Profile Picture"
                                          style="height: 100%; width:100%; object-fit:cover">

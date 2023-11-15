@@ -18,6 +18,10 @@ Route::middleware('auth')->get('/user/settings', [UserController::class, 'settin
 Route::middleware('auth')->put('/user/update', [UserController::class, 'update'])->name('user.update');
 Route::middleware('auth')->put('user/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
 Route::get('user', [UserController::class, 'index'])->name('user.index');
+Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+Route::put('user/update/{user}', [UserController::class, 'updateUser'])->name('user.update-user');
+Route::delete('user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
+Route::put('user/reactivate/{user}', [UserController::class, 'reactivate'])->name('user.reactivate');
 
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
