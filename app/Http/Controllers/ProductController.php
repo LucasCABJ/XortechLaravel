@@ -8,13 +8,13 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\QueryException;
 
 class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::where('active', true)
-            ->orderBy('name')
+        $products = Product::orderBy('name')
             ->get();
         return view('product.index', compact('products'));
     }
@@ -47,11 +47,26 @@ class ProductController extends Controller
     }
 
 
-    public function update(ProductRequest $request, Product $product): RedirectResponse
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        $product->update($request->all());
+        $data = $request->only(['name', 'short_desc', 'long_desc', 'price', 'category_id']);
+        $data['active'] = $request->has('active');
+
+        // Actualiza los datos del producto
+        $product->update($data);
+
+        // Verifica si se seleccionaron imágenes para eliminar
+        if ($request->has('delete_image')) {
+            // Obtiene las IDs de las imágenes seleccionadas
+            $selectedImageIds = $request->input('delete_image');
+
+            // Elimina las imágenes seleccionadas
+            $product->images()->whereIn('id', $selectedImageIds)->delete();
+        }
+
         return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
+
 
     public function destroy(Product $product): RedirectResponse
     {
@@ -59,7 +74,8 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
     }
 
-    function home() {
+    function home()
+    {
         return view('product.home');
     }
 

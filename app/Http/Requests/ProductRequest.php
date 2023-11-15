@@ -21,13 +21,12 @@ class ProductRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|max:100',
             'short_desc' => 'required|max:255',
             'long_desc' => 'required',
-            'main_image' => 'required|max:100',
             'price' => 'required|numeric',
             'active' => 'boolean',
             'category_id' => 'required|exists:categories,id',

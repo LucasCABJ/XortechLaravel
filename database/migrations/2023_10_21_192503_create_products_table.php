@@ -22,7 +22,6 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->boolean('active')->default(true);
             $table->timestamps();
-
             // Definición de la clave foránea
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
         });

@@ -60,7 +60,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            {{--<div class="form-group">
                 <label for="main_image">Product Image</label>
                 <input type="text" name="main_image" id="main_image" class="form-control @error('main_image') is-invalid @enderror" value="{{ old('main_image') }}" required>
                 @error('main_image')
@@ -68,7 +68,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div>
+            </div>--}}
 
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
