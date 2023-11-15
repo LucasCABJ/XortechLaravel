@@ -13,6 +13,14 @@ use App\Models\Image;
 
 class UserController extends Controller
 {
+
+    function index():
+    {
+        $users = User::all();
+
+        return view('user.index', compact('users'))
+    } 
+
     function settings(): View
     {
         return view('user.settings');
