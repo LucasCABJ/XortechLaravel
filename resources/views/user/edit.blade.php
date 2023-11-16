@@ -76,14 +76,14 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    class="d-block w-50 py-2 px-3 fs-5 btn btn-danger rounded-0 text-white">{{ __('Suspend User') }}</button>
+                                                    class="d-block w-50 py-2 px-3 fs-5 btn btn-danger rounded-0 text-white">{{ __('Inactivate User') }}</button>
                                             </form>
                                         @else
                                             <form action="{{ route('user.reactivate', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit"
-                                                    class="d-block w-50 py-2 px-3 fs-5 btn btn-success rounded-0 text-white">{{ __('Reactivate User') }}</button>
+                                                    class="d-block w-50 py-2 px-3 fs-5 btn btn-success rounded-0 text-white">{{ __('Activate User') }}</button>
                                             </form>
                                         @endif
 

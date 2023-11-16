@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Users')
+
 @section('content')
     @component('components.navbar')
     @endcomponent
@@ -30,9 +32,9 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             @if ($user->active == 1)
-                                <strong>Active</strong>
+                                <strong class="text-success">Active</strong>
                             @else
-                                <strong class="text-bold">Suspended</strong>
+                                <strong class="text-danger">Unactive</strong>
                             @endif
                         </td>
                         <td>{{ $user->created_at }}</td>
@@ -45,14 +47,14 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        class="btn btn-danger rounded-0 d-block w-100">{{ __('Suspend') }}</button>
+                                        class="btn btn-danger rounded-0 d-block w-100">{{ __('Inactivate') }}</button>
                                 </form>
                             @else
                                 <form method="POST" action="{{ route('user.reactivate', $user->id) }}">
                                     @csrf
                                     @method('PUT')
                                     <button type="submit"
-                                        class="btn btn-success rounded-0 d-block w-100">{{ __('Reactivate') }}</button>
+                                        class="btn btn-success rounded-0 d-block w-100">{{ __('Activate') }}</button>
                                 </form>
                             @endif
                         </td>

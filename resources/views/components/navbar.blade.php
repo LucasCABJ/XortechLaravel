@@ -30,9 +30,9 @@
                             class="fa-solid fa-users me-2"></i>{{ __('Category') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navLink {{ request()->routeIs('category.user') ? 'activo' : '' }}"
+                    <a class="navLink {{ request()->routeIs('user.index') ? 'activo' : '' }}"
                        href="{{ route('user.index') }}"><i
-                            class="fa-solid fa-users me-2"></i>{{ __('Users') }}</a>
+                            class="fa-solid fa-user me-2"></i>{{ __('Users') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="navLink {{ request()->routeIs('product.index') ? 'activo' : '' }}"

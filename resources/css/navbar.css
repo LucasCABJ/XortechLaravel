@@ -185,22 +185,24 @@
     }
 }
 
-.navLink:hover {
-    color: var(--primario);
-    text-shadow: var(--primario) 0 0 10px;
-}
 
 a.navLink {
     color: #f1f1f1;
     text-decoration: none;
     margin: 0 10px;
     font-size: 1.2rem;
+    transition: all .2s ease-in-out;
 }
 
 a.navLink.activo {
     color: var(--primario);
     font-weight: 500;
-    animation: glow 2s infinite;
+    animation: glow 5s infinite;
+}
+
+.navLink:hover {
+    color: var(--primario);
+    text-shadow: var(--primario) 0 0 10px;
 }
 
 /*centrar links*/
