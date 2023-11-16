@@ -22,6 +22,7 @@ Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit
 Route::put('user/update/{user}', [UserController::class, 'updateUser'])->name('user.update-user');
 Route::delete('user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
 Route::put('user/reactivate/{user}', [UserController::class, 'reactivate'])->name('user.reactivate');
+Route::post('user/create', [UserController::class, 'create'])->name('user.create');
 
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);

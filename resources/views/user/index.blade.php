@@ -2,13 +2,85 @@
 
 @section('title', 'Users')
 
+@section('headextra')
+    @vite(['node_modules/jquery/dist/jquery.min.js'])
+@endsection
+
 @section('content')
     @component('components.navbar')
     @endcomponent
 
     <div class="container mt-4" style="min-height: 80vh">
 
-        <a href="{{ route('category.create') }}" class="btn btn-th-primary text-white rounded-0 my-2">Create User</a>
+        @if (Session::has('user_created'))
+            <div class="d-none" id="creation">
+                <p>{{ Session::get('user_created')[0] }} </p>
+                <p>{{ Session::get('user_created')[1] }} </p>
+            </div>
+            @vite(['resources/js/userCreated.js'])
+        @endif
+
+        <button type="button" id="createUserBtn" class="btn btn-th-primary text-white rounded-0 my-2">Create User</button>
+
+        <form action="{{ route("user.create") }}" class="d-none p-3" method="POST" id="createUserForm">
+            @csrf
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror fs-4"
+                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
+                        placeholder="{{ __('Name') }}">
+
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror fs-4"
+                        name="email" value="{{ old('email') }}" required autocomplete="email"
+                        placeholder="{{ __('Email') }}">
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror fs-4"
+                        name="password" required autocomplete="new-password" placeholder="{{ __('Password') }}">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <input id="password-confirm" type="password" class="form-control fs-4" name="password_confirmation"
+                        required autocomplete="new-password" placeholder="{{ __('Confirm password') }}">
+                </div>
+            </div>
+
+            <div class="row mb-0">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-th-primary text-white rounded-0 w-100 fs-4">
+                        {{ __('Create') }}<i class="fa-regular fa-pen-to-square ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
 
         <h2 class="mt-3">{{ __('Users') }}</h2>
 
@@ -67,4 +139,8 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('scripts')
+    @vite(['resources/js/createUser.js'])
 @endsection

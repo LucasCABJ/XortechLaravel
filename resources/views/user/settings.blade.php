@@ -6,9 +6,6 @@
     @vite(['node_modules/jquery/dist/jquery.min.js'])
 @endsection
 
-@section('modals')
-@endsection
-
 @section('content')
     @component('components.navbar')
     @endcomponent

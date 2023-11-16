@@ -25,6 +25,23 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
+    function create(Request $request){
+        
+        $request->validate([
+            'password' => 'required|confirmed|min:8',
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('user_created', [$request->email, $request->password]);
+    }
+
     function updateUser(Request $request, User $user){
         //
         $imgchange = false;
