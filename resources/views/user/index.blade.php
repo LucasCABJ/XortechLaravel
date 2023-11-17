@@ -13,16 +13,25 @@
     <div class="container mt-4" style="min-height: 80vh">
 
         @if (Session::has('user_created'))
-            <div class="d-none" id="creation">
+            <div class="d-none flex-column" id="creation">
+                <p class="form-label">Email</p>
                 <p>{{ Session::get('user_created')[0] }} </p>
-                <p>{{ Session::get('user_created')[1] }} </p>
+                <div class="d-flex align-items-center py-2">
+                    <p class="form-label my-0">Contraseña</p>
+                    <i id="newPasswordToggler" class="fa-solid fa-eye link-secondary ms-2"></i>
+                </div>
+                <input id="newPasswordInput" class="border-0 mb-2" type="password" value="{{ Session::get('user_created')[1] }}"
+                    disabled>
+                <div>
+                    <a class="link-secondary fs-6" id="copyPasswordBtn">{{ __("Copy password") }}</a>
+                </div>
             </div>
             @vite(['resources/js/userCreated.js'])
         @endif
 
         <button type="button" id="createUserBtn" class="btn btn-th-primary text-white rounded-0 my-2">Create User</button>
 
-        <form action="{{ route("user.create") }}" class="d-none p-3" method="POST" id="createUserForm">
+        <form action="{{ route('user.create') }}" class="d-none p-3" method="POST" id="createUserForm">
             @csrf
 
             <div class="row mb-3">

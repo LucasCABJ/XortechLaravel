@@ -9,7 +9,7 @@ button.addEventListener("click", () => {
         title: "<strong>Create User</strong>",
         html: form,
         showCloseButton: true,
-        showConfirmButton: false,
         showCancelButton: false,
+        showConfirmButton: false,
     });
 });
