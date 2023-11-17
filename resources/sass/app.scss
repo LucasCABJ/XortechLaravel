@@ -131,3 +131,7 @@ $form-check-input-focus-box-shadow: 0 0 0px 3px rgba(map-get($map: $custom-theme
 .monitor-banner:hover {
     background-size: calc(cover - 150px);
 }
+
+.invalid-feedback {
+    text-align: left;
+}

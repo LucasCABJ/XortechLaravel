@@ -30,7 +30,7 @@ class UserController extends Controller
         $request->validate([
             'password' => 'required|confirmed|min:8',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
         ]);
 
         $user = User::create([
@@ -67,7 +67,7 @@ class UserController extends Controller
                 ['url' => 'images/usup/' . $filename]
                 );
         }
-        return redirect()->route('user.edit', $user->id);
+        return redirect()->back()->with('userUpdated', true);
     }
 
     function destroy(User $user) {
@@ -102,7 +102,7 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:8'
         ]);
 
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
 
         $user->update([
             'password' => Hash::make($request->password)
@@ -111,16 +111,33 @@ class UserController extends Controller
         return redirect()->route('user.settings')->with('passwordUpdated', true);
     }
 
+    function changePassword(Request $request, User $user)
+    {
+
+        $request->validate([
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('passwordUpdated', true);
+    }
+
     function update(Request $request)
     {
+
+        $request->validate([
+            'name' => "required",
+            'email' => "required|unique:users",
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
 
         $user = Auth::user();
         $imgchange = false;
 
         if ($request->file('image')) {
-            $request->validate([
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
             $imgchange = true;
             //filename with timestamp
             $filename = time() . $request->file('image')->getClientOriginalName();
@@ -129,7 +146,7 @@ class UserController extends Controller
 
         $user->update([
             'name' => $request->filled('name') ? $request->name : $user->name,
-            'password' => $request->filled('password') ? Hash::make($request->password) : $user->password
+            'email' => $request->filled('email') ? $request->email : $user->email
         ]);
 
         if ($imgchange) {
@@ -139,6 +156,6 @@ class UserController extends Controller
                 );
         }
 
-        return redirect()->route('user.settings')->with('passwordUpdated', true);
+        return redirect()->route('user.settings')->with('userUpdated', true);
     }
 }

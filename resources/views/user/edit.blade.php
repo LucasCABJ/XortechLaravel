@@ -14,7 +14,9 @@
     @endcomponent
 
     @if (Session::has('passwordUpdated'))
-        @vite(['resources/js/sucessPasswordUpdate.js'])
+        @vite(['resources/js/successPasswordUpdate.js'])
+    @elseif(Session::has('userUpdated'))
+        @vite(['resources/js/successAccountUpdate.js'])
     @endif
 
     <div class="container py-5" style="min-height: 100vh">
@@ -39,7 +41,7 @@
                                         <h1 class="text-th-secondary">{{ $user->name }}</h1>
                                         <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">Administrador</h3>
 
-                                        <form action="{{ route('user.update_password') }}" method="POST"
+                                        <form action="{{ route('user.change_password', $user->id) }}" method="POST"
                                             id="changePasswordForm" class="d-none p-3">
                                             @csrf
                                             @method('PUT')
