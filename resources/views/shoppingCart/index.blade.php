@@ -33,8 +33,8 @@
                                                         class="img-fluid rounded-3" alt="product image">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                                    <h6 class="text-muted">{{ $item->product->name }}</h6>
-                                                    <h6 class="text-black mb-0">{{ $item->product->short_desc }}</h6>
+                                                    <h6 class="text-black">{{ $item->product->name }}</h6>
+                                                    <h6 class="text-muted mb-0">{{ $item->product->short_desc }}</h6>
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                     <div class="input-group input-group-sm">
@@ -43,7 +43,7 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button class="btn btn-outline-th-tertiary btn-sm"
+                                                            <button class="btn btn-outline-th-tertiary btn-sm px-2"
                                                                     type="submit" id="decrement">
                                                                 <i class="fa-regular fa-minus"></i>
                                                             </button>
@@ -57,9 +57,9 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button class="btn btn-outline-th-tertiary btn-sm
-                                                                        type=" submit
-                                                            " id="increment">
+                                                            <button class="btn btn-outline-th-tertiary btn-sm px-2"
+                                                                        type="submit"
+                                                             id="increment">
                                                             <i class="fa-regular fa-plus"></i>
                                                             </button>
                                                         </form>

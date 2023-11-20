@@ -13,16 +13,24 @@ class Product extends Model
     use HasFactory;
 
     // protected $table = 'products';
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'short_desc',
+        'long_desc',
+        'price',
+        'active',
+        'category_id'];
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function image(): MorphMany
+    public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+
 
 }
