@@ -172,7 +172,7 @@
 
                                     <!-- short_desc #TAG -->
                                     <div class="mb-4">
-                                        <label for="shortDescLabel" class="form-label">
+                                        <label for="short_desc" class="form-label">
                                             Short Description
                                         </label>
                                         <textarea class="form-control @error('short_desc') is-invalid @enderror"
