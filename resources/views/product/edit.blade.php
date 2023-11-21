@@ -23,42 +23,54 @@
     {{-- End Breadcrumbs --}}
 
     <main>
-        <h1 class="page-header-title display-6 mt-3 ms-5 text-th-tertiary">{{ $product->name }}</h1>
+        <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
 
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active"
-                        id="home-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#details"
-                        type="button"
-                        role="tab"
-                        aria-controls="home"
-                        aria-selected="true">Product Details
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link"
-                        id="profile-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#images"
-                        type="button"
-                        role="tab"
-                        aria-controls="profile"
-                        aria-selected="false">Product Images
-                </button>
-        </ul>
+            @csrf
+            @method('PUT')
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="page-header-title display-6 mt-3 ms-5 text-th-tertiary">{{ $product->name }}</h1>
+                </div>
+                <div class="col-lg-4">
+                    <button type="submit" class="btn btn-lg btn-th-primary text-white fs-4 me-5 float-end">
+                        Update
+                    </button>
+                </div>
+            </div>
 
-        {{-- DETAILS TAB --}}
-        <div class="tab-content" id="product ">
-            <div id="details"
-                 class="tab-pane fade show active"
-                 role="tabpanel"
-                 aria-labelledby="details-tab">
-                <form action="{{ route('product.update', $product->id) }}" method="POST">
 
-                    @csrf
-                    @method('PUT')
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active"
+                            id="home-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#details"
+                            type="button"
+                            role="tab"
+                            aria-controls="home"
+                            aria-selected="true">Product Details
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link"
+                            id="profile-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#images"
+                            type="button"
+                            role="tab"
+                            aria-controls="profile"
+                            aria-selected="false">Product Images
+                    </button>
+            </ul>
+
+            {{-- DETAILS TAB --}}
+            <div class="tab-content" id="product ">
+                <div id="details"
+                     class="tab-pane fade show active"
+                     role="tabpanel"
+                     aria-labelledby="details-tab">
+
                     <div class="container-fluid p-4">
                         <div class="page-header">
                             <!-- Fila (row) -->
@@ -73,7 +85,7 @@
 
                                 <!-- Columna derecha: Botones de navegación -->
                                 <div class="col-sm-auto">
-                                    <button type="submit" class="btn btn-lg btn-th-primary text-white fs-4 me-4">Update</button>
+
                                 </div>
                                 <!-- Fin de la columna derecha -->
                             </div>
@@ -105,7 +117,8 @@
                                         <div class="row row-cols-3 row-cols-md-4 g-2">
                                             @foreach($product->images as $image)
                                                 <div class="mb-3">
-                                                    <img class="img-fluid contain rounded-0 col" src="{{ asset($image->url) }}"
+                                                    <img class="img-fluid contain rounded-0 col"
+                                                         src="{{ asset($image->url) }}"
                                                          alt="">
                                                 </div>
                                             @endforeach
@@ -322,21 +335,18 @@
                         </div>
                     </div>
                     <!-- END ROW PRINCIPAL -->
-                </form>
+                </div>
             </div>
-        </div>
-        {{-- END DETAILS TAB --}}
+            {{-- END DETAILS TAB --}}
 
-        {{-- IMAGES TAB --}}
-        <div id="images"
-             class="tab-pane fade"
-             role="tabpanel"
-             aria-labelledby="details-tab">
-            <div class="container-fluid p-4">
-                <!-- Form -->
-                <form action="{{ route('product.storeImages', $product->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                   {{-- @method('PUT')--}}
+            {{-- IMAGES TAB --}}
+            <div id="images"
+                 class="tab-pane fade"
+                 role="tabpanel"
+                 aria-labelledby="details-tab">
+                <div class="container-fluid p-4">
+                    <!-- Form -->
+
                     {{-- Page Header --}}
                     <div class="page-header mb-4">
                         <div class="row align-items-center mt-3">
@@ -348,9 +358,7 @@
                             </div>
                             <!-- Columna derecha: Botones de navegación -->
                             <div class="col-sm-auto">
-                                <button type="submit"
-                                        id="submit-product-images"
-                                        class="btn btn-lg btn-th-primary text-white fs-4 me-4">Update</button>
+
                             </div>
                             <!-- Fin de la columna derecha -->
                         </div>
@@ -365,7 +373,8 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <ul id="image-list-product" class="row row-cols-3 row-cols-md-6 row-cols-lg-8 g-2 gallery">
+                                    <ul id="image-list-product"
+                                        class="row row-cols-3 row-cols-md-6 row-cols-lg-8 g-2 gallery">
                                         @forelse($product->images as $image)
                                             <li id="image_{{ $image->id }}" class="rounded-0 col">
                                                 <img class="img-fluid contain"
@@ -411,12 +420,12 @@
                             </div>
                         </div>
                     </div>
-                </form>
+
+                </div>
             </div>
-        </div>
-        {{-- END IMAGES TAB --}}
+            {{-- END IMAGES TAB --}}
 
-
+        </form>
     </main>
 
 @endsection
