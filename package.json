@@ -16,6 +16,8 @@
     },
     "dependencies": {
         "jquery": "^3.7.1",
+        "jquery-ui-dist": "^1.13.2",
+        "sortablejs": "^1.15.0",
         "sweetalert2": "^11.9.0"
     }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar bg-th-secondary navbar-expand-md shadow-sm border-th-primary border-bottom" data-bs-theme="dark">
+<nav class="navbar bg-th-secondary sticky-top navbar-expand-md shadow-sm border-th-primary border-bottom" data-bs-theme="dark">
     <div class="container d-flex justify-content-between">
         <a class="navbar-brand text-light" href="{{ route('home') }}">
                 <span class="logo justify-content-center align-items-center p-0">

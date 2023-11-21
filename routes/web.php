@@ -27,6 +27,8 @@ Route::middleware('auth')->post('user/create', [UserController::class, 'create']
 
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
+Route::post('/product/storeImages/{product}', [ProductController::class, 'storeImages'])->name('product.storeImages');
+
 
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::post('/shoppingCart/addProduct', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');

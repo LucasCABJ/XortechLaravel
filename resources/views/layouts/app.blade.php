@@ -20,6 +20,7 @@
         'resources/fontawesome/css/all.min.css',
         'resources/js/app.js',
         'resources/js/jquery-3.7.1.js',
+        /*'resources/js/jquery-ui.js',*/
         'resources/css/app.css',
         'resources/css/navbar.css',
         'resources/css/bg-striped.css',

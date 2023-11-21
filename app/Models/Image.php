@@ -13,7 +13,8 @@ class Image extends Model
     protected $fillable = [
         'url',
         'imageable_id',
-        'imageable_type'
+        'imageable_type',
+        'position'
         ];
 
     public function imageable():  MorphTo  // polymorphic relation

@@ -33,3 +33,21 @@ body {
     top: 0;
     left: 0;
 }
+
+.btn{
+    padding: 0.5rem 1rem;
+    /*font-size: 1.25rem;*/
+    border-radius: 0;
+    /*box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);*/
+}
+
+.contain{
+    object-fit: contain;
+}
+
+.gallery li{
+    display: inline;
+    list-style: none;
+    float: left;
+    margin: 0 10px 10px 0;
+}
