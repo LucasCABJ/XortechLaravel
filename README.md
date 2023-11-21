@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# XORTech E-commerce - Proyecto de Producción Web
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bienvenido al repositorio del proyecto XORTech E-commerce, desarrollado como parte de la materia de Producción Web con el profesor Fernando Gaitán.
 
-## About Laravel
+## Descripción del Proyecto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+XORTech es un E-commerce construido en Laravel 10 que permite la gestión de productos, usuarios y ventas. El proyecto implementa tres tipos de roles: Admin, Vendedor y Usuario, cada uno con sus respectivos permisos y funcionalidades.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Características Principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Gestión de Usuarios:** Admin puede gestionar usuarios, vendedores y usuarios pueden ver y actualizar sus perfiles.
+- **Catálogo de Productos:** Productos organizados en categorías para una fácil navegación.
+- **Roles y Permisos:** Tres roles implementados (Admin, Vendedor, Usuario) con permisos específicos.
+- **Interfaz Intuitiva:** Diseño amigable y fácil de usar para una experiencia de usuario agradable.
 
-## Learning Laravel
+## Autores
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### - **[Lucas Caraballo](https://github.com/LucasCABJ)**
+### - **[Juan Ignacio Pardo](https://github.com/JuaniPardo)**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Pantalla de Inicio
+![https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/home.png](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/home.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Pantalla de Registro
+![https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/registro.png](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/registro.png)
 
-## Laravel Sponsors
+## Vista de Producto
+![https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/product.png](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/product.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Edicion de Producto
+![https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/edicion%20de%20prod.png](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/edicion%20de%20prod.png)
 
-### Premium Partners
+## Gestión de Usuarios
+![https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/Gestion%20de%20usuarios.png](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/Gestion%20de%20usuarios.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Carrito de Compras
+![https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/carrito.png](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/carrito.png)
 
-## Contributing
+## Avance del proyecto al 23-11-2023
+[Tablero Trello (JSON)](https://raw.githubusercontent.com/LucasCABJ/XortechLaravel/main/TableroTrello.json)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Instalación
 
-## Code of Conduct
+1. Clona el repositorio en tu máquina local:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   git clone https://github.com/LucasCABJ/XortechLaravel.git
+    ```
+   2. Entra al directorio del proyecto:
 
-## Security Vulnerabilities
+   ```bash
+   cd XortechLaravel
+   ```
+    3. Instala las dependencias:
+    
+    ```bash
+    composer install
+    ```
+    4. Crea un archivo .env y copia el contenido del archivo .env.example:
+    
+    ```bash
+    cp .env.example .env
+    ```
+    5. Genera una nueva clave de aplicación:
+    
+    ```bash
+    php artisan key:generate
+    ```
+    6. Crea una base de datos y configura las credenciales en el archivo .env:
+    
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=
+    DB_PORT=
+    DB_DATABASE=
+    DB_USERNAME=
+    DB_PASSWORD=
+    ```
+    7. Ejecuta las migraciones y los seeders:
+    
+    ```bash
+    php artisan migrate --seed
+    ```
+    8. Inicia el servidor:
+    
+    ```bash
+    php artisan serve
+    ```
+    9. Visita http://localhost:8000 en tu navegador.
+   
+ ## Acceso a Roles (Work in Progress)
+- **Admin:**
+  - Email:admin.gmail.com
+  - Password:admin
+- **Vendedor:**
+  - Email:vendedor.gmail.com
+  - Password:vendedor
+- **Usuario:**
+  - Email:usuario.gmail.com
+  - Password:usuario
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Contribuciones
+Las contribuciones son bienvenidas. Si encuentras algún problema o tienes alguna mejora, por favor, crea un issue o una pull request. 
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
