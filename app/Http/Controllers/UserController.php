@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use App\Models\Image;
+use App\Models\Role;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -19,37 +21,32 @@ class UserController extends Controller
         $users = User::orderBy('id', 'asc')->get();
 
         return view('user.index', compact('users'));
-    } 
+    }
 
     function edit(User $user){
         return view('user.edit', compact('user'));
     }
 
-    function create(Request $request){
-        
-        $request->validate([
-            'password' => 'required|confirmed|min:8',
-            'name' => 'required',
-            'email' => 'required|unique:users',
-        ]);
+    function create(UserRequest $request){
 
         $user = User::create([
             "name" => $request->name,
             "email" => $request->email,
-            "password" => Hash::make($request->password)
+            "password" => Hash::make($request->password),
         ]);
+        $customerRole = Role::where('name', 'customer')->first();
+        $user->role()->associate($customerRole);
+        $user->save();
 
         return redirect()->back()->with('user_created', [$request->email, $request->password]);
     }
 
-    function updateUser(Request $request, User $user){
+    function updateUser(UserRequest $request, User $user){
         //
         $imgchange = false;
 
         if ($request->file('image')) {
-            $request->validate([
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
+
             $imgchange = true;
             //filename with timestamp
             $filename = time() . $request->file('image')->getClientOriginalName();
@@ -71,7 +68,7 @@ class UserController extends Controller
     }
 
     function destroy(User $user) {
-        
+
         $user->update([
             "active" => false
         ]);
@@ -81,7 +78,7 @@ class UserController extends Controller
     }
 
     function reactivate(User $user) {
-        
+
         $user->update([
             "active" => true
         ]);
@@ -125,14 +122,8 @@ class UserController extends Controller
         return redirect()->back()->with('passwordUpdated', true);
     }
 
-    function update(Request $request)
+    function update(UserRequest $request)
     {
-
-        $request->validate([
-            'name' => "required",
-            'email' => "required|unique:users",
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
 
         $user = Auth::user();
         $imgchange = false;

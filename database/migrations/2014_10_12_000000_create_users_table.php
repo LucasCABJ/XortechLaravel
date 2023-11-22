@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('role_id')->nullable();  //foreign key to roles table
             //foreign key
             $table->unsignedBigInteger('cart_id')->nullable(); //carrito de compra se guarda entre sesiones
         });

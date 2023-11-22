@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.admin-layout')
 
 @section('content')
-    @component('components.navbar')
-    @endcomponent
+    {{--@component('components.navbar')
+    @endcomponent--}}
 
     <div class="container mt-4">
-        <a href="{{ route('product.index') }}" class="btn btn-secondary mb-3">Back</a>
+        <a href="{{ route('product.vendor.index') }}" class="btn btn-secondary mb-3">Back</a>
 
         <h2>Create Product</h2>
 
-        <form action="{{ route('product.store') }}" method="POST">
+        <form action="{{ route('product.vendor.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="category">Category</label>
@@ -60,7 +60,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            {{--<div class="form-group">
                 <label for="main_image">Product Image</label>
                 <input type="text" name="main_image" id="main_image" class="form-control @error('main_image') is-invalid @enderror" value="{{ old('main_image') }}" required>
                 @error('main_image')
@@ -68,7 +68,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div>
+            </div>--}}
 
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
