@@ -1,4 +1,4 @@
-@extends('layouts.admin-layout')
+@extends('layouts.app')
 
 @section('title', 'Users')
 
@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-   {{-- @component('components.navbar')
-    @endcomponent--}}
+    @component('components.navbar')
+    @endcomponent
 
     <div class="container mt-4" style="min-height: 80vh">
 
@@ -147,6 +147,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{ $users->links() }}
     </div>
 @endsection
 
