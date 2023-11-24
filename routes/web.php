@@ -14,14 +14,14 @@ use App\Http\Controllers\HomeController;
 Route::get('/home', [ProductController::class, 'home'])->name('home');
 
 // RUTAS ADMIN (UserController)
-Route::middleware(['auth','admin'])->group(function (){
+Route::middleware(['auth','admin', 'active'])->group(function (){
     Route::get('user', [UserController::class, 'index'])->name('user.index');
     Route::delete('user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
     Route::put('user/reactivate/{user}', [UserController::class, 'reactivate'])->name('user.reactivate');
 });
 
 // RUTAS USUARIO (UserController)
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
     Route::put('user/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
@@ -29,10 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('user/update/{user}', [UserController::class, 'updateUser'])->name('user.update-user');
     Route::post('user/create', [UserController::class, 'create'])->name('user.create');
-
-   /* Route::get('user', [UserController::class, 'index'])->name('user.index');
-    Route::delete('user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
-    Route::put('user/reactivate/{user}', [UserController::class, 'reactivate'])->name('user.reactivate');*/
 
     //TODO Estas rutas de ProductController son para el vendedor
     Route::resource('product', ProductController::class)
@@ -76,3 +72,4 @@ Route::delete('/shoppingCart/emptyCart', [ShoppingCartController::class, 'emptyC
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+

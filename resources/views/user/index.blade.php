@@ -29,6 +29,10 @@
             @vite(['resources/js/userCreated.js'])
         @endif
 
+        @if (Session::has('cantInactivateYourself'))
+            @vite(['resources/js/cantInactivateYourself.js'])
+        @endif
+
         <button type="button" id="createUserBtn" class="btn btn-th-primary text-white rounded-0 my-2">Create User</button>
 
         <form action="{{ route('user.create') }}" class="d-none p-3" method="POST" id="createUserForm">

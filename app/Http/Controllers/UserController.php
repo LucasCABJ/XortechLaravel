@@ -18,7 +18,7 @@ class UserController extends Controller
 
     function index()
     {
-        $users = User::orderBy('id', 'asc')->get();
+        $users = User::orderBy('id', 'asc')->paginate(3);
 
         return view('user.index', compact('users'));
     }
@@ -68,6 +68,10 @@ class UserController extends Controller
     }
 
     function destroy(User $user) {
+
+        if($user->id == Auth::user()->id){
+            return redirect()->route('user.index')->with('cantInactivateYourself', true);
+        }
 
         $user->update([
             "active" => false

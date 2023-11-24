@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-lg-7 pt-3">
                                         <h1 class="text-th-secondary">{{ $user->name }}</h1>
-                                        <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">Administrador</h3>
+                                        <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">{{ $user->role->name }}</h3>
 
                                         <form action="{{ route('user.change_password', $user->id) }}" method="POST"
                                             id="changePasswordForm" class="d-none p-3">

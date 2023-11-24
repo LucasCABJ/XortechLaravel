@@ -9,6 +9,7 @@
 @import '../bootstrap/scss/_functions';
 @import '../bootstrap/scss/_variables';
 
+
 // Custom Bootstrap variables
 
 $custom-theme-colors: (
@@ -16,8 +17,16 @@ $custom-theme-colors: (
     "th-secondary": #2A1B3D,
     "th-tertiary": #443182,
     "th-info": #7D62A0,
+    "th-info-darker": #4a3960,
     "th-grey": #A4B3B6 
-);
+    );
+
+// CUSTOM PAGINATION
+$pagination-color:     map-get($map: $custom-theme-colors, $key: "th-secondary");
+$pagination-hover-color: map-get($map: $custom-theme-colors, $key: "th-info"); 
+$pagination-active-bg: map-get($map: $custom-theme-colors, $key: "th-info");
+$pagination-focus-box-shadow:       none;
+$pagination-active-border-color:    map-get($map: $custom-theme-colors, $key: "th-info-darker");
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
