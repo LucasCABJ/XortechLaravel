@@ -189,9 +189,9 @@
 a.navLink {
     color: #f1f1f1;
     text-decoration: none;
-    margin: 0 10px;
     font-size: 1.2rem;
     transition: all .2s ease-in-out;
+    margin: 0 10px 0 30px;
 }
 
 a.navLink.activo {

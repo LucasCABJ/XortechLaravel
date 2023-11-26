@@ -27,11 +27,14 @@
                                                 $total += $item->subtotal();
                                             @endphp
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img
-                                                        src="https://redragon.es/content/uploads/2021/04/CETROPHORUS-RGB.png"
+                                                @if($item->product->images->isNotEmpty())
+                                                    <img src="{{ asset($item->product->images->first()->url) }}" class="img-fluid contain w-25 rounded-3" alt="product image">
+                                                @else
+                                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                                    <img src="https://redragon.es/content/uploads/2021/04/CETROPHORUS-RGB.png"
                                                         class="img-fluid rounded-3" alt="product image">
                                                 </div>
+                                                @endif
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                                     <h6 class="text-black">{{ $item->product->name }}</h6>
                                                     <h6 class="text-muted mb-0">{{ $item->product->short_desc }}</h6>

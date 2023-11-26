@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             UsersTableSeeder::class,
             RolesTableSeeder::class,
-            //ProductsTableSeeder::class,
+            ProductSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

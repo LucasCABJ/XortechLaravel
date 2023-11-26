@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin-layout')
 
 @section('title', 'Home')
 
@@ -27,7 +27,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!--fin hero-->
 
