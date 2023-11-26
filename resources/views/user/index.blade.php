@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin-layout')
 
 @section('title', 'Users')
 
@@ -10,7 +10,7 @@
     @component('components.navbar')
     @endcomponent
 
-    <div class="container mt-4" style="min-height: 80vh">
+    <div class="container mt-4 main" style="min-height: 80vh">
 
         @if (Session::has('user_created'))
             <div class="d-none flex-column" id="creation">
@@ -100,19 +100,21 @@
         <table class="table mt-3">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Actions</th>
+                    <th class="fw-bold fs-5 ps-3">Name</th>
+                    <th class="fw-bold fs-5 ps-3">Email</th>
+                    <th class="fw-bold fs-5 ps-3">Status</th>
+                    <th class="fw-bold fs-5 ps-3">
+                        <div class="d-flex flex-column">
+                            <span>Created At</span>
+                            <span>Updated At</span>
+                        </div>
+                    <th class="fw-bold fs-5 ps-3">Role</th>
+                    <th class="fw-bold fs-5 ps-3">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
@@ -122,8 +124,17 @@
                                 <strong class="text-danger">Unactive</strong>
                             @endif
                         </td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>{{ $user->updated_at }}</td>
+                        <td>
+                            <div class="d-flex flex-column">
+                                <span>
+                                    {{ $user->created_at }}
+                                </span>
+                                <span>
+                                    {{ $user->updated_at }}
+                                </span>
+                            </div>
+                            </td>
+                        <td>{{ $user->role->name }}</td>
                         <td>
                             <a href="{{ route('user.edit', $user->id) }}"
                                 class="btn btn-secondary rounded-0 d-block mb-1">{{ __('Edit') }}</a>

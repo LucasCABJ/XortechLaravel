@@ -51,13 +51,8 @@ Route::resource('product', ProductController::class)
         'show' => 'product.show',
     ]);
 // Rutas para Categorías
-Route::resource('category', CategoryController::class)
-    ->except(['create', 'store', 'edit', 'update'])
-    ->names([
-        'index' => 'category.index',
-        'show' => 'category.show',
+Route::resource('category', CategoryController::class);
 
-    ]);
 
 Route::post('/product/storeImages/{product}', [ProductController::class, 'storeImages'])->name('product.storeImages');
 

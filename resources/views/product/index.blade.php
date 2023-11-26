@@ -15,10 +15,10 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                         <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                            @if($product->image->url)
+                                            @if($product->image && $product->image->url)
                                                 <img src="{{ asset($product->image->url) }}" class="w-100" />
                                             @else
-                                                <img src="{{'/images/default-product-image.png'}}" class="w-100" />
+                                                <img src="{{ asset('/images/default-product-image.png') }}" class="w-100" />
                                             @endif
                                             <a href="{{ route('product.show',$product->id) }}">
                                                 <div class="hover-overlay">

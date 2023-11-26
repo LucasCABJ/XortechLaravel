@@ -1,0 +1,30 @@
+:root {
+    --offcanvas-width: 17%;
+}
+
+#app {
+    margin-left: var(--offcanvas-width);
+    width: calc(100% - var(--offcanvas-width));
+}
+
+.offcanvas-title {
+    text-transform: uppercase;
+    color: var(--primario);
+}
+
+.accordion-button {
+    background: var(--dark);
+    color: #f1f1f1;
+    font-size: 0.6em;
+}
+
+.accordion-button:not(.collapsed) {
+    background: var(--secundario);
+    color: #f1f1f1;
+}
+
+.offcanvas {
+    background: var(--dark);
+    color: #f1f1f1;
+    max-width: var(--offcanvas-width);
+}

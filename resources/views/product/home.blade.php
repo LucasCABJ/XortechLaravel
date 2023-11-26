@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!--fin hero-->
 
     <section class="container py-lg-5">
