@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 Swal.fire({
-    title: "No intentes hacer eso!",
+    title: "Don't try doing that!",
     timer: 2000,
     timerProgressBar: true,
     icon: "error",
