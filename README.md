@@ -102,3 +102,5 @@ XORTech es un E-commerce construido en Laravel 10 que permite la gestión de pro
 ## Contribuciones
 Las contribuciones son bienvenidas. Si encuentras algún problema o tienes alguna mejora, por favor, crea un issue o una pull request. 
 
+Muchas gracias.
+
