@@ -15,6 +15,6 @@ class ImageSeeder extends Seeder
     public function run()
     {
         $imageUrls = ['images/monitor.jpg', 'https://ejemplo.com/imagen2.jpg', 'https://ejemplo.com/imagen3.jpg'];
-
+        //aca van las imagenes
     }
 }
