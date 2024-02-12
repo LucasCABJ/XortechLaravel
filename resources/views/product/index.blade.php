@@ -15,15 +15,12 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                         <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                            @if($product->image && $product->image->url)
-                                                <img src="{{ asset($product->image->url) }}" class="w-100" />
-                                            @else
-                                                <img src="{{ asset('/images/default-product-image.png') }}" class="w-100" />
-                                            @endif
                                             <a href="{{ route('product.show',$product->id) }}">
-                                                <div class="hover-overlay">
-                                                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                                </div>
+                                                @if($product->image && $product->image->url)
+                                                    <img src="{{ asset($product->image->url) }}" class="w-100" />
+                                                @else
+                                                    <img src="{{ asset('/images/default-product-image.png') }}" class="w-100" />
+                                                @endif
                                             </a>
                                         </div>
                                     </div>
@@ -42,7 +39,7 @@
                                             <h4 class="mb-1 me-1">{{ $product->price }}</h4>
                                             {{--<span class="text-danger"><s>$20.99</s></span>--}}
                                         </div>
-                                        <h6 class="text-success">Shipping</h6>
+                                        <h6 class="text-success">Free Shipping</h6>
                                         <div class="d-flex flex-column mt-4">
                                             <button class="btn btn-primary btn-sm" type="button">Buy Now</button>
                                             <form action="{{ route('shoppingCart.addProduct') }}" method="POST" class="">
