@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-lg-5 d-lg-block d-flex justify-content-center align-items-center">
                                         <div class="rounded" style="aspect-ratio : 1 / 1;">
-                                            <img src="#" class="rounded border border-th-grey border-2"
+                                            <img src="@if($user->image == "" || !Storage::disk("local")->has("public/images/usup/".$user->image)){{asset('assets/img/default-male.png') }}@else{{asset('storage/images/usup/'.$user->image)}} @endif" class="rounded border border-th-grey border-2"
                                                 alt="Current Profile Picture"
                                                 style="height: 100%; width:100%; object-fit:cover">
 

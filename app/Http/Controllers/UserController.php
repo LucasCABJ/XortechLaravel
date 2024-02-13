@@ -129,24 +129,22 @@ class UserController extends Controller
     function update(UserRequest $request)
     {
         $user = Auth::user();
-        $imgchange = false;
+        $imgChange = false;
+        $emailChange = false;
 
-        if ($request->file('image')) {
-            $imgchange = true;
-            //filename with timestamp
+        if ($request->hasFile('image')) {
+            $imgChange = true;
             $filename = time() . $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('/images/usup', $filename, 'public');
         }
 
-        $user->update([
-            'name' => $request->filled('name') ? $request->name : $user->name
-        ]);
+        if($request->email && $request->email != $user->email) $emailChange = true; 
 
-        if($imgchange) {
-            $user->update([
-                'image' => $filename
-            ]);
-        }
+        $user->update([
+            'name' => $request->filled('name') ? $request->name : $user->name,
+            'image' => $imgChange ? $filename : $user->image,
+            'email' => $emailChange ? $request->email : $user->email
+        ]);
 
         return redirect()->route('user.settings')->with('userUpdated', true);
     }
