@@ -69,11 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
-
-        // Crea la relación polimórfica en la tabla de imágenes con la imagen por defecto
-        $user->images()->create([
-            'url' => 'assets/img/default-male.png',
+            'image' => ""
         ]);
 
         return $user;

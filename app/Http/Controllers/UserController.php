@@ -128,7 +128,6 @@ class UserController extends Controller
 
     function update(UserRequest $request)
     {
-
         $user = Auth::user();
         $imgchange = false;
 
@@ -136,19 +135,17 @@ class UserController extends Controller
             $imgchange = true;
             //filename with timestamp
             $filename = time() . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images/usup',$filename,'public');
+            $request->file('image')->storeAs('/images/usup', $filename, 'public');
         }
 
         $user->update([
-            'name' => $request->filled('name') ? $request->name : $user->name,
-            'email' => $request->filled('email') ? $request->email : $user->email
+            'name' => $request->filled('name') ? $request->name : $user->name
         ]);
 
-        if ($imgchange) {
-            $user->images()->updateOrCreate(
-                ['imageable_type' => get_class($user)],
-                ['url' => 'images/usup/' . $filename]
-                );
+        if($imgchange) {
+            $user->update([
+                'image' => $filename
+            ]);
         }
 
         return redirect()->route('user.settings')->with('userUpdated', true);
