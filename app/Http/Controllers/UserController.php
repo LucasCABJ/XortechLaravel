@@ -112,6 +112,23 @@ class UserController extends Controller
         return redirect()->route('user.settings')->with('passwordUpdated', true);
     }
 
+    function updateEmail(Request $request) {
+        $request->validate([
+            'image' => 'image|required|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        $user = Auth::user();
+        $imgChange = false;
+        if ($request->hasFile('image')) {
+            $imgChange = true;
+            $filename = time() . $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('/images/usup', $filename, 'public');
+        }
+        $user->update([
+            'image' => $imgChange ? $filename : $user->image
+        ]);
+        return redirect()->route('user.settings')->with('userUpdated', true);
+    }
+
     function changePassword(Request $request, User $user)
     {
 
@@ -129,20 +146,12 @@ class UserController extends Controller
     function update(UserRequest $request)
     {
         $user = Auth::user();
-        $imgChange = false;
         $emailChange = false;
-
-        if ($request->hasFile('image')) {
-            $imgChange = true;
-            $filename = time() . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('/images/usup', $filename, 'public');
-        }
 
         if($request->email && $request->email != $user->email) $emailChange = true; 
 
         $user->update([
             'name' => $request->filled('name') ? $request->name : $user->name,
-            'image' => $imgChange ? $filename : $user->image,
             'email' => $emailChange ? $request->email : $user->email
         ]);
 

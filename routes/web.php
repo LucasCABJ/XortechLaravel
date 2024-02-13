@@ -25,6 +25,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
     Route::put('user/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
+    Route::put('user/update_email', [UserController::class, 'updateEmail'])->name('user.update_profile_pic');
     Route::put('user/change_password/{user}', [UserController::class, 'changePassword'])->name('user.change_password');
     Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('user/update/{user}', [UserController::class, 'updateUser'])->name('user.update-user');

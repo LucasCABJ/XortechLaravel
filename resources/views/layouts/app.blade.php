@@ -26,7 +26,8 @@
         'resources/css/bg-striped.css',
         'resources/css/cart.css',
         'resources/js/quantity-input-handler.js',
-        'resources/js/bootstrap.js'
+        'resources/js/bootstrap.js',
+        'resources/css/profilepicchange.css'
         ])
 
     @yield('headextra')
