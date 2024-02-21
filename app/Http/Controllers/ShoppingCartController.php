@@ -22,23 +22,31 @@ class ShoppingCartController extends Controller
     public function addProduct(Request $request): RedirectResponse
     {
         $product = Product::find($request->product_id);
-        $user = Auth::user();
-        $quantity = $request->quantity ? $request->quantity : 1;
-        $shoppingCart = ShoppingCart::where('user_id', $user->id)
-            ->where('product_id', $product->id)
-            ->first();
-        if ($shoppingCart) {
-            $shoppingCart->quantity += $quantity;
-            $shoppingCart->save();
+
+        // Verificar si el usuario está autenticado
+        if (Auth::check()) {
+            $user = Auth::user();
+            $quantity = $request->quantity ? $request->quantity : 1;
+            $shoppingCart = ShoppingCart::where('user_id', $user->id)
+                ->where('product_id', $product->id)
+                ->first();
+            if ($shoppingCart) {
+                $shoppingCart->quantity += $quantity;
+                $shoppingCart->save();
+            } else {
+                ShoppingCart::create([
+                    'user_id' => $user->id,
+                    'product_id' => $product->id,
+                    'quantity' => $quantity,
+                ]);
+            }
+            return redirect()->route('shoppingCart.index');
         } else {
-            ShoppingCart::create([
-                'user_id' => $user->id,
-                'product_id' => $product->id,
-                'quantity' => $quantity,
-            ]);
+            // Manejar el caso en el que el usuario no está autenticado
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para agregar productos al carrito.');
         }
-        return redirect()->route('shoppingCart.index');
     }
+
 
     public function increaseQuantity(ShoppingCart $shoppingCart): RedirectResponse
     {
