@@ -132,9 +132,10 @@
                                             <h5>${{ $total + $shipping }}</h5>
                                         </div>
 
-                                        <button type="button" class="btn btn-dark btn-block btn-lg"
-                                                data-mdb-ripple-color="dark">Check Out
-                                        </button>
+                                        <form action="{{ route('checkout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Check Out</button>
+                                        </form>
 
                                     </div>
                                 </div>

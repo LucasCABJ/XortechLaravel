@@ -4,11 +4,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
-//use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PurchaseOrderController;
+
 
 
 Route::get('/home', [ProductController::class, 'home'])->name('home');
@@ -64,6 +64,12 @@ Route::delete('/shoppingCart/deleteProduct/{shoppingCart}', [ShoppingCartControl
 Route::put('/shoppingCart/increaseQuantity/{shoppingCart}', [ShoppingCartController::class, 'increaseQuantity'])->name('shoppingCart.increaseQuantity');
 Route::put('/shoppingCart/decreaseQuantity/{shoppingCart}', [ShoppingCartController::class, 'decreaseQuantity'])->name('shoppingCart.decreaseQuantity');
 Route::delete('/shoppingCart/emptyCart', [ShoppingCartController::class, 'emptyCart'])->name('shoppingCart.emptyCart');
+Route::post('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+
+// Rutas para la orden de compra
+Route::get('/purchaseOrder', [PurchaseOrderController::class, 'index'])->name('purchaseOrder.index');
+Route::get('/purchaseOrder/show/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
 
 Auth::routes();
 

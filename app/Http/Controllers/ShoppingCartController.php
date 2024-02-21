@@ -8,6 +8,8 @@ use Illuminate\View\View;
 use App\Models\ShoppingCart;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use App\Models\PurchaseOrder;
+use App\Models\Sale;
 
 class ShoppingCartController extends Controller
 {
@@ -81,6 +83,37 @@ class ShoppingCartController extends Controller
             $this->deleteProduct($item);
         }
         return redirect()->route('shoppingCart.index');
+    }
+
+    public function checkout(): RedirectResponse
+    {
+        $user = Auth::user();
+        $shoppingCart = ShoppingCart::where('user_id', $user->id)->get();
+        $total = 0;
+
+        foreach ($shoppingCart as $item) {
+            $total += $item->subtotal();
+        }
+
+        $purchaseOrder = PurchaseOrder::create([
+            'order_number' => 'PO-' . time(),
+            'user_id' => $user->id,
+            'total' => $total,
+            'status' => 'pending',
+        ]);
+
+        foreach ($shoppingCart as $item) {
+            Sale::create([
+                'product_id' => $item->product_id,
+                'purchase_order_id' => $purchaseOrder->id,
+                'sale_price' => $item->product->price,
+                'quantity' => $item->quantity,
+            ]);
+
+            $item->delete();
+        }
+
+        return redirect()->route('purchase-orders.show', $purchaseOrder);
     }
 
 }
