@@ -68,8 +68,8 @@ Route::post('/checkout', [ShoppingCartController::class, 'checkout'])->name('che
 
 
 // Rutas para la orden de compra
-Route::get('/purchaseOrder', [PurchaseOrderController::class, 'index'])->name('purchaseOrder.index');
 Route::get('/purchaseOrder/show/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
+Route::get('/purchaseOrder/index', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
 
 Auth::routes();
 

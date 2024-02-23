@@ -49,7 +49,11 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        //
+        // Obtener todas las órdenes de compra del usuario autenticado
+        $purchaseOrders = PurchaseOrder::where('user_id', auth()->id())->get();
+
+        // Retornar la vista de órdenes de compra
+        return view('purchase-orders.index', compact('purchaseOrders'));
     }
 
     /**
