@@ -9,45 +9,11 @@ use App\Models\PurchaseOrder;
 class PurchaseOrderController extends Controller
 {
     /**
-     * Checkout the shopping cart
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    /*public function checkout(): RedirectResponse
-    {
-        $user = Auth::user(); // Obtener el usuario autenticado
-        $shoppingCart = ShoppingCart::where('user_id', $user->id)
-            ->get(); // Obtener los productos en el carrito
-        $total = 0;
-        foreach ($shoppingCart as $item) {
-            $total += $item->subtotal();
-        } // Calcular el total de la compra
-
-        $purchaseOrder = PurchaseOrder::create([
-            'order_number' => 'PO-' . time(),
-            'user_id' => $user->id,
-            'total' => $total,
-            'status' => 'pending',
-        ]); // Crear la orden de compra
-        foreach ($shoppingCart as $item) {
-            Sale::create([
-                'product_id' => $item->product_id,
-                'purchase_order_id' => $purchaseOrder->id,
-                'sale_price' => $item->product->price,
-                'quantity' => $item->quantity,
-            ]); // Crear la venta de cada producto
-
-            $item->delete(); // Eliminar el producto del carrito
-        }
-        return redirect()->route('purchaseOrder.show', $purchaseOrder);
-    }*/
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         // Obtener todas las órdenes de compra del usuario autenticado
         $purchaseOrders = PurchaseOrder::where('user_id', auth()->id())->get();
@@ -83,7 +49,7 @@ class PurchaseOrderController extends Controller
      * @param  \App\Models\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseOrder $purchaseOrder)
+    public function show(PurchaseOrder $purchaseOrder): View
     {
         // Verificar si el usuario tiene acceso a la orden de compra
         if ($purchaseOrder->user_id !== auth()->id()) {
@@ -95,6 +61,26 @@ class PurchaseOrderController extends Controller
 
         // Retornar la vista de detalles de la orden de compra
         return view('purchase-orders.show', compact('purchaseOrder'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\PurchaseOrder  $pendingOrder
+     * @return \Illuminate\Http\Response
+     */
+    public function showPending(PurchaseOrder $pendingOrder): View
+    {
+        // Verificar si el usuario tiene acceso a la orden de compra
+        /*if ($purchaseOrder->user_id !== auth()->id()) {
+            return abort(403); // Acceso no autorizado
+        }*/
+
+        // Cargar los detalles de la orden de compra y sus ventas asociadas
+        $pendingOrder->load('sales.product');
+
+        // Retornar la vista de detalles de la orden de compra
+        return view('vendor.purchase-orders.showPending', compact('pendingOrder'));
     }
 
     /**
@@ -136,34 +122,28 @@ class PurchaseOrderController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function pendingOrders(): View
+    public function pending(): View
     {
         // Obtener todas las órdenes pendientes
         $pendingOrders = PurchaseOrder::where('status', 'pending')->get();
 
         // Retornar la vista de órdenes pendientes
-        return view('purchase_orders.pending', compact('pendingOrders'));
+        return view('vendor.purchase-orders.pending', compact('pendingOrders'));
     }
 
     /**
-     * Approve a purchase order
+     * Ship the specified purchase order.
      *
-     * @param PurchaseOrder $purchaseOrder
+     * @param  \App\Models\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function approveOrder(PurchaseOrder $purchaseOrder): RedirectResponse
+    public function ship(PurchaseOrder $purchaseOrder): RedirectResponse
     {
-        // Verificar si el usuario autenticado tiene permisos de administrador o vendedor
-        if (!auth()->user()->isAdminOrVendor()) {
-            return abort(403); // Acceso no autorizado
-        }
-
-        // Cambiar el estado de la orden de "pendiente" a "aprobada"
-        $purchaseOrder->update(['status' => 'approved']);
+        // Actualizar el estado de la orden a "Shipped"
+        $purchaseOrder->update(['status' => 'Shipped']);
+        $purchaseOrder->update(['shipped_at' => now()]);
 
         // Redirigir de vuelta a la página de órdenes pendientes
-        return redirect()->route('purchaseOrder.pendingOrders')->with('success', 'Order approved successfully');
+        return redirect()->route('vendor.purchase-orders.pending')->with('success', 'Order shipped successfully');
     }
-
-
 }

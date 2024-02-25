@@ -52,6 +52,22 @@
     <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
         @if(Auth::user()->role->name == 'admin')
             <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingZero">
+                    <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseZero" aria-expanded="false" aria-controls="flush-collapseZero">
+                        <i class="fa-solid fa-shopping-bag me-2"></i> PURCHASES
+                    </button>
+                </h2>
+                <div id="flush-collapseZero" class="accordion-collapse collapse" aria-labelledby="flush-headingZero"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a href="{{ route('vendor.purchase-orders.pending') }}" class="nav-link">
+                            Pending
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -95,10 +111,12 @@
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
                  data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    Create Product
+                    <a href="{{ route('vendor.product.create') }}" class="nav-link">Create Product</a>
                 </div>
                 <div class="accordion-body">
-                    View Products
+                    <a href="{{ route('vendor.product.index') }}" class="nav-link">
+                        View Products
+                    </a>
                 </div>
             </div>
         </div>

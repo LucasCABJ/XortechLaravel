@@ -40,14 +40,14 @@ function create(): View
     $categories = Category::where('active', true)
         ->orderBy('name')
         ->get();
-    return view('product.vendor.create', compact('categories'));
+    return view('vendor.product.create', compact('categories'));
 }
 
 public
 function store(ProductRequest $request): RedirectResponse
 {
     Product::create($request->all());
-    return redirect()->route('product.vendor.index')->with('success', 'Product created successfully.');
+    return redirect()->route('vendor.product.index')->with('success', 'Product created successfully.');
 }
 
 public
@@ -63,7 +63,7 @@ function edit(Product $product): View
     $categories = Category::where('active', true)
         ->orderBy('name')
         ->get();
-    return view('product.vendor.edit', compact('product', 'categories', 'images'))->with('success', 'Product updated successfully.');
+    return view('vendor.product.edit', compact('product', 'categories', 'images'))->with('success', 'Product updated successfully.');
 }
 
 private
@@ -137,6 +137,6 @@ function vendor(): View
 {
     $products = Product::orderBy('name')
         ->get();
-    return view('product.vendor.index', compact('products'));
+    return view('vendor.product.index', compact('products'));
 }
 }

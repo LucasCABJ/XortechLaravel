@@ -6,7 +6,7 @@
     @component('components.navbar')
     @endcomponent
     <div class="container">
-        <div class="row">
+        <div class="row my-3">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
@@ -14,15 +14,15 @@
                     </div>
                     <div class="col-md-6">
 
-                        <h2 class="mt-4 text-end">{{ $purchaseOrder->order_number }}</h2>
+                        <h2 class="mt-4 text-end">{{ $pendingOrder->order_number }}</h2>
                     </div>
                 </div>
                 <div class="border px-2">
                     <h4 class="my-3">Details</h4>
-                    <p><strong>Order Number:</strong> {{ $purchaseOrder->order_number }}</p>
-                    <p><strong>Total:</strong> ${{ $purchaseOrder->total }}</p>
-                    <p><strong>Status:</strong> {{ $purchaseOrder->status }}</p>
-                    <p><strong>Created At:</strong> {{ $purchaseOrder->created_at }}</p>
+                    <p><strong>Order Number:</strong> {{ $pendingOrder->order_number }}</p>
+                    <p><strong>Total:</strong> ${{ $pendingOrder->total }}</p>
+                    <p><strong>Status:</strong> {{ $pendingOrder->status }}</p>
+                    <p><strong>Created At:</strong> {{ $pendingOrder->created_at }}</p>
                 </div>
 
                 <h2 class="my-3">Sales</h2>
@@ -36,7 +36,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($purchaseOrder->sales as $sale)
+                    @foreach ($pendingOrder->sales as $sale)
                         <tr>
                             <td>{{ $sale->product->name }}</td>
                             <td>${{ $sale->sale_price }}</td>
@@ -47,7 +47,7 @@
                     </tbody>
                 </table>
             </div>
-            <a class="mb-5 mt-2" href=" {{ route('purchase-orders.index') }} ">Go Back</a>
+            <a class="mb-5 mt-2" href=" {{ route('vendor.purchase-orders.pending') }}">Go Back</a>
         </div>
     </div>
 @endsection

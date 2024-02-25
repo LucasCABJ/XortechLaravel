@@ -22,7 +22,7 @@
     {{-- End Breadcrumbs --}}
 
     <main>
-        <form action="{{ route('product.vendor.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('vendor.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method('PUT')

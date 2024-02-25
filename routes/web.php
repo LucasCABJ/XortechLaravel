@@ -34,13 +34,13 @@ Route::middleware(['auth', 'active'])->group(function () {
     //TODO Estas rutas de ProductController son para el vendedor
     Route::resource('product', ProductController::class)
         ->names([
-            'edit' => 'product.vendor.edit',
-            'create' => 'product.vendor.create',
-            'update' => 'product.vendor.update',
-            'destroy' => 'product.vendor.destroy',
-            'store' => 'product.vendor.store',
+            'edit' => 'vendor.product.edit',
+            'create' => 'vendor.product.create',
+            'update' => 'vendor.product.update',
+            'destroy' => 'vendor.product.destroy',
+            'store' => 'vendor.product.store',
         ]);
-    Route::get('/product/vendor/index', [ProductController::class, 'vendor'])->name('product.vendor.index');
+    Route::get('/vendor/product/index', [ProductController::class, 'vendor'])->name('vendor.product.index');
 
 });
 
@@ -70,6 +70,10 @@ Route::post('/checkout', [ShoppingCartController::class, 'checkout'])->name('che
 // Rutas para la orden de compra
 Route::get('/purchaseOrder/show/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
 Route::get('/purchaseOrder/index', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
+Route::get('purchaseOrder/pending', [PurchaseOrderController::class, 'pending'])->name('vendor.purchase-orders.pending');
+Route::get('purchaseOrder/showPending/{pendingOrder}', [PurchaseOrderController::class, 'showPending'])->name('vendor.purchase-orders.showPending');
+Route::put('/purchase-orders/{purchaseOrder}/ship', 'App\Http\Controllers\PurchaseOrderController@ship')->name('purchaseOrders.ship');
+
 
 Auth::routes();
 

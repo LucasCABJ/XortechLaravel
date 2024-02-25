@@ -5,11 +5,11 @@
     @endcomponent--}}
 
     <div class="container mt-4">
-        <a href="{{ route('product.vendor.index') }}" class="btn btn-secondary mb-3">Back</a>
+        <a href="{{ route('vendor.product.index') }}" class="btn btn-secondary mb-3">Back</a>
 
         <h2>Create Product</h2>
 
-        <form action="{{ route('product.vendor.store') }}" method="POST">
+        <form action="{{ route('vendor.product.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="category">Category</label>
