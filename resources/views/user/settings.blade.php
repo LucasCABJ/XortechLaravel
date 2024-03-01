@@ -94,7 +94,7 @@
                                         </form>
 
                                         <button type="button" id="changePasswordBtn" data-micromodal-trigger="modal-1"
-                                            class="d-block py-2 px-3 fs-5 btn btn-th-primary rounded-0 text-white">{{ __('Reset Password') }}</button>
+                                            class="d-block py-2 px-3 fs-5 btn btn-th-primary rounded-0 text-white">{{ __('Change Password') }}</button>
 
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-5">
+                                    {{-- <div class="row mb-5">
                                         <div class="col-12">
                                             <label for="email" class='form-label'>Email</label>
                                             <input id="email" type="email"
@@ -145,7 +145,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="row mb-0">
                                         <div class="col-12">

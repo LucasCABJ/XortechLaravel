@@ -18,6 +18,7 @@ Route::middleware(['auth','admin', 'active'])->group(function (){
     Route::get('user', [UserController::class, 'index'])->name('user.index');
     Route::delete('user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
     Route::put('user/reactivate/{user}', [UserController::class, 'reactivate'])->name('user.reactivate');
+    Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
 });
 
 // RUTAS USUARIO (UserController)
@@ -25,9 +26,9 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/user/settings', [UserController::class, 'settings'])->name('user.settings');
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
     Route::put('user/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
-    Route::put('user/update_email', [UserController::class, 'updateEmail'])->name('user.update_profile_pic');
-    Route::put('user/change_password/{user}', [UserController::class, 'changePassword'])->name('user.change_password');
-    Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('user/update_email', [UserController::class, 'updateProfilePic'])->name('user.update_profile_pic');
+    Route::put('user/update_email/{user}', [UserController::class, 'editProfilePic'])->name('user.edit_profile_pic');
+    Route::put('user/update_password/{user}', [UserController::class, 'editPassword'])->name('user.edit_password');
     Route::put('user/update/{user}', [UserController::class, 'updateUser'])->name('user.update-user');
     Route::post('user/create', [UserController::class, 'create'])->name('user.create');
 

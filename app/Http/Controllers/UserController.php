@@ -42,30 +42,25 @@ class UserController extends Controller
     }
 
     function updateUser(UserRequest $request, User $user){
-        //
-        $imgchange = false;
-
-        if ($request->file('image')) {
-
-            $imgchange = true;
-            //filename with timestamp
-            $filename = time() . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images/usup',$filename,'public');
-        }
-
+        
         $user->update([
-            'name' => $request->filled('name') ? $request->name : $user->name,
-            'email' => $request->filled('email') ? $request->email : $user->email
+            'name' => $request->filled('name') ? $request->name : $user->name
         ]);
-
-        if ($imgchange) {
-            $user->images()->updateOrCreate(
-                ['imageable_type' => get_class($user)],
-                ['url' => 'images/usup/' . $filename]
-                );
-        }
+        
         return redirect()->back()->with('userUpdated', true);
     }
+
+    // function updateUserProfilePic(UserRequest $request, User $user){
+    //     //
+    //     $imgchange = false;
+
+    //     $user->update([
+    //         'name' => $request->filled('name') ? $request->name : $user->name,
+    //         'email' => $request->filled('email') ? $request->email : $user->email
+    //     ]);
+        
+    //     return redirect()->back()->with('userUpdated', true);
+    // }
 
     function destroy(User $user) {
 
@@ -112,7 +107,7 @@ class UserController extends Controller
         return redirect()->route('user.settings')->with('passwordUpdated', true);
     }
 
-    function updateEmail(Request $request) {
+    function updateProfilePic(Request $request) {
         $request->validate([
             'image' => 'image|required|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
@@ -129,7 +124,23 @@ class UserController extends Controller
         return redirect()->route('user.settings')->with('userUpdated', true);
     }
 
-    function changePassword(Request $request, User $user)
+    function editProfilePic(Request $request, User $user) {
+        $request->validate([
+            'image' => 'image|required|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        $imgChange = false;
+        if ($request->hasFile('image')) {
+            $imgChange = true;
+            $filename = time() . $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('/images/usup', $filename, 'public');
+        }
+        $user->update([
+            'image' => $imgChange ? $filename : $user->image
+        ]);
+        return redirect()->route('user.edit', $user->id)->with('userUpdated', true);
+    }
+
+    function editPassword(Request $request, User $user)
     {
 
         $request->validate([
