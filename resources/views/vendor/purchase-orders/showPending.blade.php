@@ -47,7 +47,7 @@
                     </tbody>
                 </table>
             </div>
-            <a class="mb-5 mt-2" href=" {{ route('vendor.purchase-orders.pending') }}">Go Back</a>
+            <a class="mb-5 mt-2" href=" {{ route('vendor.purchase-orders.list') }}">Go Back</a>
         </div>
     </div>
 @endsection

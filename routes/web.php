@@ -71,9 +71,11 @@ Route::post('/checkout', [ShoppingCartController::class, 'checkout'])->name('che
 // Rutas para la orden de compra
 Route::get('/purchaseOrder/show/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
 Route::get('/purchaseOrder/index', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
-Route::get('purchaseOrder/pending', [PurchaseOrderController::class, 'pending'])->name('vendor.purchase-orders.pending');
+Route::get('purchaseOrder/list', [PurchaseOrderController::class, 'list'])->name('vendor.purchase-orders.list');
 Route::get('purchaseOrder/showPending/{pendingOrder}', [PurchaseOrderController::class, 'showPending'])->name('vendor.purchase-orders.showPending');
 Route::put('/purchase-orders/{purchaseOrder}/ship', 'App\Http\Controllers\PurchaseOrderController@ship')->name('purchaseOrders.ship');
+Route::put('/purchase-orders/{purchaseOrder}/deliver', 'App\Http\Controllers\PurchaseOrderController@deliver')->name('purchaseOrders.deliver');
+
 
 
 Auth::routes();

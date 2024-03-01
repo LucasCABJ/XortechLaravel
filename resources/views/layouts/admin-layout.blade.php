@@ -61,8 +61,8 @@
                 <div id="flush-collapseZero" class="accordion-collapse collapse" aria-labelledby="flush-headingZero"
                      data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        <a href="{{ route('vendor.purchase-orders.pending') }}" class="nav-link">
-                            Pending
+                        <a href="{{ route('vendor.purchase-orders.list') }}" class="nav-link">
+                            Display
                         </a>
                     </div>
                 </div>

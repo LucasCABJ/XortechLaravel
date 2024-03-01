@@ -10,6 +10,7 @@ class PurchaseOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * USER SIDE
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,28 +24,7 @@ class PurchaseOrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Display the specified resource. USER SIDE
      *
      * @param  \App\Models\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
@@ -64,7 +44,7 @@ class PurchaseOrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource. ADMIN SIDE
      *
      * @param  \App\Models\PurchaseOrder  $pendingOrder
      * @return \Illuminate\Http\Response
@@ -84,51 +64,19 @@ class PurchaseOrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
-
-    /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. ADMIN SIDE
      *
      * @return \Illuminate\View\View
      */
-    public function pending(): View
+    public function list(): View
     {
         // Obtener todas las órdenes pendientes
         $pendingOrders = PurchaseOrder::where('status', 'pending')->get();
+        $shippedOrders = PurchaseOrder::where('status', 'shipped')->get();
+        $deliveredOrders = PurchaseOrder::where('status', 'completed')->get();
 
         // Retornar la vista de órdenes pendientes
-        return view('vendor.purchase-orders.pending', compact('pendingOrders'));
+        return view('vendor.purchase-orders.list', compact('pendingOrders', 'shippedOrders', 'deliveredOrders'));
     }
 
     /**
@@ -140,10 +88,26 @@ class PurchaseOrderController extends Controller
     public function ship(PurchaseOrder $purchaseOrder): RedirectResponse
     {
         // Actualizar el estado de la orden a "Shipped"
-        $purchaseOrder->update(['status' => 'Shipped']);
+        $purchaseOrder->update(['status' => 'shipped']);
         $purchaseOrder->update(['shipped_at' => now()]);
 
-        // Redirigir de vuelta a la página de órdenes pendientes
-        return redirect()->route('vendor.purchase-orders.pending')->with('success', 'Order shipped successfully');
+        // Redirigir de vuelta a la página de órdenes
+        return redirect()->route('vendor.purchase-orders.list')->with('success', 'Order shipped successfully');
+    }
+
+    /**
+     * Delivery the specified purchase order.
+     * @param \App\Models\PurchaseOrder  $purchaseOrder
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deliver(PurchaseOrder $purchaseOrder): RedirectResponse
+    {
+        // Actualizar el estado de la orden a "Delivered"
+        $purchaseOrder->update(['status' => 'completed']);
+        $purchaseOrder->update(['delivered_at' => now()]);
+
+        // Redirigir de vuelta a la página de órdenes
+        return redirect()->route('vendor.purchase-orders.list')->with('success', 'Order delivered successfully');
+
     }
 }
