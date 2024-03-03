@@ -9,26 +9,42 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-use App\Models\Image;
 use App\Models\Role;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
 
-    function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return View
+     */
+    function index(): View
     {
         $users = User::orderBy('id', 'asc')->paginate(3);
 
         return view('user.index', compact('users'));
     }
 
-    function edit(User $user){
+    /**
+     * Display the specified resource.
+     *
+     * @param User $user
+     * @return View
+     */
+    function edit(User $user): View
+    {
         return view('user.edit', compact('user'));
     }
 
-    function create(UserRequest $request){
-
+    /**
+     * Creates a new user
+     * @param UserRequest $request
+     * @return RedirectResponse
+     */
+    function create(UserRequest $request): RedirectResponse
+    {
         $user = User::create([
             "name" => $request->name,
             "email" => $request->email,
@@ -41,29 +57,28 @@ class UserController extends Controller
         return redirect()->back()->with('user_created', [$request->email, $request->password]);
     }
 
-    function updateUser(UserRequest $request, User $user){
-        
+    /**
+     * Updates a user
+     * @param UserRequest $request
+     * @param User $user
+     * @return RedirectResponse
+     */
+    function updateUser(UserRequest $request, User $user): RedirectResponse
+    {
         $user->update([
             'name' => $request->filled('name') ? $request->name : $user->name
         ]);
-        
+
         return redirect()->back()->with('userUpdated', true);
     }
 
-    // function updateUserProfilePic(UserRequest $request, User $user){
-    //     //
-    //     $imgchange = false;
-
-    //     $user->update([
-    //         'name' => $request->filled('name') ? $request->name : $user->name,
-    //         'email' => $request->filled('email') ? $request->email : $user->email
-    //     ]);
-        
-    //     return redirect()->back()->with('userUpdated', true);
-    // }
-
-    function destroy(User $user) {
-
+    /**
+     * Soft Deletes a user
+     * @param User $user
+     * @return RedirectResponse
+     */
+    function destroy(User $user): RedirectResponse
+    {
         if($user->id == Auth::user()->id){
             return redirect()->route('user.index')->with('cantInactivateYourself', true);
         }
@@ -76,8 +91,13 @@ class UserController extends Controller
 
     }
 
-    function reactivate(User $user) {
-
+    /**
+     * Reactivates a user
+     * @param User $user
+     * @return RedirectResponse
+     */
+    function reactivate(User $user): RedirectResponse
+    {
         $user->update([
             "active" => true
         ]);
@@ -86,14 +106,19 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param User $user
+     * @return View
+     */
     function settings(): View
     {
         return view('user.settings');
     }
 
-    function updatePassword(Request $request)
+    function updatePassword(Request $request): RedirectResponse
     {
-
         $request->validate([
             'password' => 'required|confirmed|min:8'
         ]);
@@ -107,7 +132,13 @@ class UserController extends Controller
         return redirect()->route('user.settings')->with('passwordUpdated', true);
     }
 
-    function updateProfilePic(Request $request) {
+    /**
+     * Updates the profile picture of the user
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    function updateProfilePic(Request $request): RedirectResponse
+    {
         $request->validate([
             'image' => 'image|required|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
@@ -124,7 +155,14 @@ class UserController extends Controller
         return redirect()->route('user.settings')->with('userUpdated', true);
     }
 
-    function editProfilePic(Request $request, User $user) {
+    /**
+     * Updates the profile picture of the user
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
+    function editProfilePic(Request $request, User $user): RedirectResponse
+    {
         $request->validate([
             'image' => 'image|required|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
@@ -140,9 +178,14 @@ class UserController extends Controller
         return redirect()->route('user.edit', $user->id)->with('userUpdated', true);
     }
 
-    function editPassword(Request $request, User $user)
+    /**
+     * Updates the password of the user
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
+    function editPassword(Request $request, User $user): RedirectResponse
     {
-
         $request->validate([
             'password' => 'required|confirmed|min:8'
         ]);
@@ -154,12 +197,17 @@ class UserController extends Controller
         return redirect()->back()->with('passwordUpdated', true);
     }
 
-    function update(UserRequest $request)
+    /**
+     * Updates the user's profile
+     * @param UserRequest $request
+     * @return RedirectResponse
+     */
+    function update(UserRequest $request): RedirectResponse
     {
         $user = Auth::user();
         $emailChange = false;
 
-        if($request->email && $request->email != $user->email) $emailChange = true; 
+        if($request->email && $request->email != $user->email) $emailChange = true;
 
         $user->update([
             'name' => $request->filled('name') ? $request->name : $user->name,

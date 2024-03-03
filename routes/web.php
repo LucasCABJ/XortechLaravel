@@ -19,6 +19,24 @@ Route::middleware(['auth','admin', 'active'])->group(function (){
     Route::delete('user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
     Route::put('user/reactivate/{user}', [UserController::class, 'reactivate'])->name('user.reactivate');
     Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    // TODO Estas rutas de ProductController son para el vendedor
+    Route::resource('product', ProductController::class)
+        ->names([
+            'edit' => 'vendor.product.edit',
+            'create' => 'vendor.product.create',
+            'update' => 'vendor.product.update',
+            'destroy' => 'vendor.product.destroy',
+            'store' => 'vendor.product.store',
+        ]);
+    Route::get('/vendor/product/index', [ProductController::class, 'vendor'])->name('vendor.product.index');
+
+    Route::post('/product/storeImages/{product}', [ProductController::class, 'storeImages'])->name('product.storeImages');
+
+    Route::get('purchaseOrder/list', [PurchaseOrderController::class, 'list'])->name('vendor.purchase-orders.list');
+    Route::get('purchaseOrder/showPending/{pendingOrder}', [PurchaseOrderController::class, 'showPending'])->name('vendor.purchase-orders.showPending');
+    Route::put('/purchase-orders/{purchaseOrder}/ship', 'App\Http\Controllers\PurchaseOrderController@ship')->name('purchaseOrders.ship');
+    Route::put('/purchase-orders/{purchaseOrder}/deliver', 'App\Http\Controllers\PurchaseOrderController@deliver')->name('purchaseOrders.deliver');
+
 });
 
 // RUTAS USUARIO (UserController)
@@ -32,16 +50,6 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::put('user/update/{user}', [UserController::class, 'updateUser'])->name('user.update-user');
     Route::post('user/create', [UserController::class, 'create'])->name('user.create');
 
-    //TODO Estas rutas de ProductController son para el vendedor
-    Route::resource('product', ProductController::class)
-        ->names([
-            'edit' => 'vendor.product.edit',
-            'create' => 'vendor.product.create',
-            'update' => 'vendor.product.update',
-            'destroy' => 'vendor.product.destroy',
-            'store' => 'vendor.product.store',
-        ]);
-    Route::get('/vendor/product/index', [ProductController::class, 'vendor'])->name('vendor.product.index');
 
 });
 
@@ -56,8 +64,6 @@ Route::resource('product', ProductController::class)
 Route::resource('category', CategoryController::class);
 
 
-Route::post('/product/storeImages/{product}', [ProductController::class, 'storeImages'])->name('product.storeImages');
-
 // Rutas para el carrito de la compra
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::post('/shoppingCart/addProduct', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
@@ -71,10 +77,6 @@ Route::post('/checkout', [ShoppingCartController::class, 'checkout'])->name('che
 // Rutas para la orden de compra
 Route::get('/purchaseOrder/show/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
 Route::get('/purchaseOrder/index', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
-Route::get('purchaseOrder/list', [PurchaseOrderController::class, 'list'])->name('vendor.purchase-orders.list');
-Route::get('purchaseOrder/showPending/{pendingOrder}', [PurchaseOrderController::class, 'showPending'])->name('vendor.purchase-orders.showPending');
-Route::put('/purchase-orders/{purchaseOrder}/ship', 'App\Http\Controllers\PurchaseOrderController@ship')->name('purchaseOrders.ship');
-Route::put('/purchase-orders/{purchaseOrder}/deliver', 'App\Http\Controllers\PurchaseOrderController@deliver')->name('purchaseOrders.deliver');
 
 
 

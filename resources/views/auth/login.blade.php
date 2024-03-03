@@ -17,7 +17,6 @@
                     <h1 class="text-center mb-5">{{ __('Login to XorTech') }}</h1>
 
                     @if(session('error'))
-{{--                        @dd(session('error'))--}}
                         <div id="errorMessage" data-error="{{ session('error') }}"></div>
                     @endif
 

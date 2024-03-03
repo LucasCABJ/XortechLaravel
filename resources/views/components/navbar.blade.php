@@ -37,12 +37,6 @@
                     </a>
                 </li>
 
-                @if (Auth::user() )
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
-                    </li>
-                @endif
-
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav mx-auto fs-5 text-end">

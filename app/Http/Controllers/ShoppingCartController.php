@@ -45,7 +45,7 @@ class ShoppingCartController extends Controller
             return redirect()->route('shoppingCart.index');
         } else {
             // Manejar el caso en el que el usuario no está autenticado
-            return redirect()->route('login')->with('error', 'Debes iniciar sesión para agregar productos al carrito.');
+            return redirect()->route('login')->with('error', 'You must be logged in to add products to the cart.');
         }
     }
 

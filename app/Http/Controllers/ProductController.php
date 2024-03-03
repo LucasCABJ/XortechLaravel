@@ -129,6 +129,10 @@ function destroy(Product $product): RedirectResponse
 
 function home()
 {
+    //if user is logged in and user role is admin or vendor
+    if (auth()->check() && (auth()->user()->hasrole('admin')|| auth()->user()->hasrole('vendor'))) {
+        return redirect()->route('vendor.purchase-orders.list');
+    }
     return view('product.home');
 }
 

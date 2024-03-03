@@ -20,9 +20,9 @@ class AdminMiddleware
         if (auth()->check() && auth()->user()->hasRole('admin')) {
             return $next($request);
         }
-
-        // Si el usuario no cumple con los requisitos, redirigir o responder según tu lógica
-        return redirect('/')->with('error', 'Unauthorized Access!');
+        else {
+            return redirect()->route('login')->with('error', 'Unauthorized Access!');
+        }
     }
 
 }
