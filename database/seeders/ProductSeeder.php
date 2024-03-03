@@ -16,26 +16,26 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'name' => 'Monitor Gamer',
-            'short_desc' => 'Descripción corta del Producto',
-            'long_desc' => 'Descripción larga del Producto. Lorem ipsum dolor sit amet consectetu adipisicing elit. Quisquam, voluptate.',
-            'price' => 123,
+            'name' => 'Gamer Monitor',
+            'short_desc' => 'Gamer Monitor 26" 4k 144hz',
+            'long_desc' => 'Gamer Monitor, 26" wide curved screen. 4K resolution and 144hz refresh rate. Perfect for gaming.',
+            'price' => 299.99,
             'category_id' => 1,
             'active' => true,
         ]);
         Product::create([
-            'name' => 'Teclado Gamer',
-            'short_desc' => 'Descripción corta del Producto',
-            'long_desc' => 'Descripción larga del Producto. Lorem ipsum dolor sit amet consectetu adipisicing elit. Quisquam, voluptate.',
-            'price' => 123,
+            'name' => 'Gamer Keyboard',
+            'short_desc' => 'Gamer Keyboard with RGB',
+            'long_desc' => 'Mechanical Keyboard with RGB lights. Perfect for gaming.',
+            'price' => 69.50,
             'category_id' => 2,
             'active' => true,
         ]);
         Product::create([
-            'name' => 'Mouse Gamer',
-            'short_desc' => 'Descripción corta del Producto',
-            'long_desc' => 'Descripción larga del Producto. Lorem ipsum dolor sit amet consectetu adipisicing elit. Quisquam, voluptate.',
-            'price' => 123,
+            'name' => 'Gamer Mouse',
+            'short_desc' => 'Gamer Mouse with RGB',
+            'long_desc' => 'Gamer Mouse with RGB lights. Perfect for gaming.',
+            'price' => 49.50,
             'category_id' => 3,
             'active' => true,
         ]);

@@ -16,7 +16,7 @@ class ImageSeeder extends Seeder
     public function run()
     {
 // Array de rutas de las imágenes
-        $imageUrls = ['images/monitor.jpg', 'images/teclado.jpg', 'images/mouse.jpg', 'images/juani.jpg'];
+        $imageUrls = ['images/monitor.png', 'images/teclado.png', 'images/mouse.png', 'images/juani.jpg'];
 
         // Array de ids y tipos para cada imagen
         $imageDetails = [

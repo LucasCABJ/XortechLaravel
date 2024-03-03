@@ -54,6 +54,7 @@ Route::middleware(['auth', 'active'])->group(function () {
 });
 
 //Rutas de producto sin restricción
+Route::get('/product/hero', [ProductController::class, 'heroProduct'])->name('product.heroProduct');
 Route::resource('product', ProductController::class)
     ->only(['index', 'show'])
     ->names([

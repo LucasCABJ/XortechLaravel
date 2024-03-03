@@ -12,12 +12,4 @@ class HomeController extends Controller
     {
         return redirect()->route('home');
     }
-
-    public function randomProduct(): View
-    {
-        $randomProduct = Product::where('active', true)
-            ->inRandomOrder()
-            ->first();
-        return view('randomProduct', compact('randomProduct'));
-    }
 }
