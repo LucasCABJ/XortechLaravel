@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+
 class CategoriesTableSeeder extends Seeder
 {
     /**
@@ -15,26 +16,26 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-       Category::create([
-                'name' => 'Monitores',
-                'description' => 'Monitores de alta calidad',
-                'image' => 'images/categories/monitores.png',
-              ]);
-         Category::create([
-                 'name' => 'Teclados',
-                 'description' => 'Teclados gamer',
-                 'image' => 'images/categories/teclados.png',
-                  ]);
-            Category::create([
-                'name' => 'Mouse',
-                'description' => 'Mouse gamer',
-                'image' => 'images/categories/mouse.png',
-                 ]);
-            Category::create([
-                'name' => 'Auriculares',
-                'description' => 'Auriculares gamer',
-                'image' => 'images/categories/auriculares.png',
-                 ]);
+        Category::create([
+            'name' => 'Monitores',
+            'description' => 'Monitores de alta calidad',
+            'image' => 'images/categories/monitores.png',
+        ]);
+        Category::create([
+            'name' => 'Keyboards',
+            'description' => 'Gamer Keyboards',
+            'image' => 'images/categories/teclado.png',
+        ]);
+        Category::create([
+            'name' => 'Mouse',
+            'description' => 'Gamer Mouse',
+            'image' => 'images/categories/mouse.png',
+        ]);
+        Category::create([
+            'name' => 'Sound',
+            'description' => 'Gamer Speakers and Headsets',
+            'image' => 'images/categories/auriculares.png',
+        ]);
     }
 
 }

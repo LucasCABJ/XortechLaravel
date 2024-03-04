@@ -39,6 +39,14 @@ class ProductSeeder extends Seeder
             'category_id' => 3,
             'active' => true,
         ]);
+        Product::create([
+            'name' => 'Gamer Headset',
+            'short_desc' => 'Gamer Headset with surround sound.',
+            'long_desc' => 'Gamer Headset. Surround sound. Perfect for gaming.',
+            'price' => 79.50,
+            'category_id' => 4,
+            'active' => true,
+        ]);
 
     }
 }

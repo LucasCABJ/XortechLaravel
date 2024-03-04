@@ -16,13 +16,14 @@ class ImageSeeder extends Seeder
     public function run()
     {
 // Array de rutas de las imágenes
-        $imageUrls = ['images/monitor.png', 'images/teclado.png', 'images/mouse.png', 'images/juani.jpg'];
+        $imageUrls = ['images/monitor.png', 'images/teclado.png', 'images/mouse.png', 'images/auris.png', 'images/juani.jpg'];
 
         // Array de ids y tipos para cada imagen
         $imageDetails = [
             ['id' => 1, 'type' => 'App\Models\Product'],
             ['id' => 2, 'type' => 'App\Models\Product'],
             ['id' => 3, 'type' => 'App\Models\Product'],
+            ['id' => 4, 'type' => 'App\Models\Product'],
             ['id' => 1, 'type' => 'App\Models\User'],
         ];
 
