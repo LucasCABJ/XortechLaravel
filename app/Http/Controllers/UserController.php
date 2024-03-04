@@ -216,4 +216,34 @@ class UserController extends Controller
 
         return redirect()->route('user.settings')->with('userUpdated', true);
     }
+
+    function updateEmail(Request $request) {
+
+        $user = Auth::user();
+
+        $request->validate([
+            'email' => 'required|confirmed|unique:users,email'
+        ]);
+
+        $user->update([
+            'email' => $request->email
+        ]);
+
+        return redirect()->route('user.settings')->with('userUpdated', true);
+
+    }
+
+    function updateUserEmail(User $user, Request $request) {
+
+        $request->validate([
+            'email' => 'required|confirmed|unique:users,email'
+        ]);
+
+        $user->update([
+            'email' => $request->email
+        ]);
+
+        return redirect()->back()->with('userUpdated', true);
+
+    }
 }

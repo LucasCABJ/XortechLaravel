@@ -19,6 +19,10 @@
         @vite(['resources/js/successAccountUpdate.js'])
     @endif
 
+    @if ($errors->has('email') || $errors->has('password') || $errors->has('image'))
+        @vite(['resources/js/errorUserSettings.js'])
+    @endif
+
     <div class="container py-5" style="min-height: 100vh">
         <div class="row">
             <a href="{{ route('user.index') }}" class="col-md-8 offset-md-2 pb-3 text-decoration-none link-secondary"><-
@@ -64,8 +68,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 pt-3">
-                                        <h1 class="text-th-secondary">{{ $user->name }}</h1>
-                                        <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">{{ $user->role->name }}</h3>
+                                        <h1 class="text-th-secondary">{{ $user->name }} <span
+                                            class="h6 text-th-grey">({{ $user->email }})</span></h1>
+                                        <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">{{ ucfirst($user->role->name) }}</h3>
 
                                         <form action="{{ route('user.edit_password', $user->id) }}" method="POST"
                                             id="changePasswordForm" class="d-none p-3">
@@ -97,21 +102,52 @@
                                         </form>
 
                                         <button type="button" id="changePasswordBtn" data-micromodal-trigger="modal-1"
-                                            class="d-block w-50 mb-2 py-2 px-3 fs-5 btn btn-th-primary rounded-0 text-white">{{ __('Edit Password') }}</button>
+                                            class="d-block w-50 mb-2 py-2 mb-2 w-75 px-3 fs-5 btn btn-th-primary rounded-0 text-white">{{ __('Edit Password') }}</button>
+
+                                            <form action="{{ route('user.update_user_email', $user->id) }}" method="POST" id="changeEmailForm"
+                                            class="d-none p-3">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <input id="email" type="email"
+                                                        class="form-control @error('email') is-invalid @enderror fs-4"
+                                                        name="email" placeholder="{{ __('New Email') }}">
+
+                                                    @error('email')
+                                                        <span class="invalid-feedback text-left" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <input id="email-confirm" type="email" class="form-control fs-4"
+                                                        name="email_confirmation" autocomplete="new-email"
+                                                        placeholder="{{ __('Confirm Email') }}">
+                                                </div>
+                                            </div>
+                                            <button type="submit"
+                                                class="btn btn-th-primary text-white fs-3 rounded-0">{{ __('Update Email') }}</button>
+                                        </form>
+
+                                        <button type="button" id="changeEmailBtn" data-micromodal-trigger="modal-1"
+                                            class="d-block py-2 px-3 fs-5 w-75 mb-2 btn btn-th-primary rounded-0 text-white">{{ __('Change Email') }}</button>
 
                                         @if ($user->active == 1)
                                             <form action="{{ route('user.delete', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    class="d-block w-50 py-2 px-3 fs-5 btn btn-danger rounded-0 text-white">{{ __('Inactivate User') }}</button>
+                                                    class="d-block w-50 py-2 px-3 fs-5 w-75 btn btn-danger rounded-0 text-white">{{ __('Inactivate User') }}</button>
                                             </form>
                                         @else
                                             <form action="{{ route('user.reactivate', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit"
-                                                    class="d-block w-50 py-2 px-3 fs-5 btn btn-success rounded-0 text-white">{{ __('Activate User') }}</button>
+                                                    class="d-block w-50 py-2 px-3 fs-5 w-75 btn btn-success rounded-0 text-white">{{ __('Activate User') }}</button>
                                             </form>
                                         @endif
 
