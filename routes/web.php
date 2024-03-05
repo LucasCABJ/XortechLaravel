@@ -37,6 +37,8 @@ Route::middleware(['auth','admin', 'active'])->group(function (){
     Route::put('/purchase-orders/{purchaseOrder}/ship', 'App\Http\Controllers\PurchaseOrderController@ship')->name('purchaseOrders.ship');
     Route::put('/purchase-orders/{purchaseOrder}/deliver', 'App\Http\Controllers\PurchaseOrderController@deliver')->name('purchaseOrders.deliver');
 
+    //Ruta para ver las categorias para el Admin
+    Route::get('vendor/category/index', [CategoryController::class, 'indexVendor'])->name('vendor.category.index');
 });
 
 // RUTAS USUARIO (UserController)

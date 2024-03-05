@@ -94,10 +94,10 @@
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
                  data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    Create Category
+                    <a href="{{ route('category.create') }}" class="nav-link">Create Category</a>
                 </div>
                 <div class="accordion-body">
-                    View Categories
+                    <a href="{{ route('vendor.category.index') }}" class="nav-link">View Categories</a>
                 </div>
             </div>
         </div>

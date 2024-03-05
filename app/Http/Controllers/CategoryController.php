@@ -30,10 +30,8 @@ class CategoryController extends Controller
     public function indexVendor(): View
     {
 
-        $categories = Category::get()
-            ->orderBy('name')
-            ->get();
-        return view('category.index', compact('categories'));
+        $categories = Category::orderBy('name')->get();
+        return view('vendor.category.index', compact('categories'));
     }
 
     public function create(): View

@@ -24,7 +24,7 @@ class CategoriesTableSeeder extends Seeder
         Category::create([
             'name' => 'Keyboards',
             'description' => 'Gamer Keyboards',
-            'image' => 'images/categories/teclado.png',
+            'image' => 'images/categories/teclados.png',
         ]);
         Category::create([
             'name' => 'Mouse',
