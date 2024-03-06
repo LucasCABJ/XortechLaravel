@@ -66,6 +66,10 @@ Route::resource('product', ProductController::class)
         'index' => 'product.index',
         'show' => 'product.show',
     ]);
+
+// Ruta de Contacto
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
+
 // Rutas para Categorías
 Route::resource('category', CategoryController::class);
 

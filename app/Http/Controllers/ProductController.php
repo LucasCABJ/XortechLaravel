@@ -156,7 +156,8 @@ class ProductController extends Controller
                 return $query->where('name', 'like', '%' . $request->input('search') . '%');
             })
             ->paginate(5);
-        return view('vendor.product.index', compact('products'));
+        $total = Product::orderBy('name')->get();
+        return view('vendor.product.index', compact('products', 'total'));
     }
 
     /**

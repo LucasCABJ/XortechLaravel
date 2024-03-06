@@ -7,8 +7,8 @@
     <div class="container my-5 ms-2">
         <a href="{{ route('vendor.product.create') }}" class="btn btn-th-primary text-light mb-3"><i class="fas fa-plus"></i> Create Product</a>
 
-        <h2 class="ms-2">Active Products: {{ $products->where('active', 1)->count() }}</h2>
-        <h2 class="ms-2">Paused Products: {{ $products->where('active', 0)->count() }}</h2>
+        <h2 class="ms-2">Active Products: {{ $total->where('active', 1)->count() }}</h2>
+        <h2 class="ms-2">Paused Products: {{ $total->where('active', 0)->count() }}</h2>
 
         @if(count($products) > 0)
             <div class="container p-4">

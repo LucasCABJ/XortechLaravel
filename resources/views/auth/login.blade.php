@@ -20,13 +20,11 @@
                         <div id="errorMessage" data-error="{{ session('error') }}"></div>
                     @endif
 
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" class="needs-validation">
                         @csrf
-
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror fs-4" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{__('Email')}}">
-
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
