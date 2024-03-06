@@ -48,7 +48,7 @@ class CategoryController extends Controller
 
     public function show(Category $category): View
     {
-        return view('vendor.category.show', compact('category'));
+        return view('category.show', compact('category'));
     }
 
     public function edit(Category $category): View

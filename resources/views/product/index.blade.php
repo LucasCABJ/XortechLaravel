@@ -49,15 +49,13 @@
                                     <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                         <div class="d-flex flex-row align-items-center mb-1">
                                             <h4 class="mb-1 me-1">{{ $product->price }}</h4>
-                                            {{--<span class="text-danger"><s>$20.99</s></span>--}}
                                         </div>
                                         <h6 class="text-success">Free Shipping</h6>
                                         <div class="d-flex flex-column mt-4">
-                                            <button class="btn btn-primary btn-sm" type="button">Buy Now</button>
                                             <form action="{{ route('shoppingCart.addProduct') }}" method="POST" class="">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="btn btn-outline-primary btn-sm mt-2 w-100">
+                                                <button type="submit" class="btn btn-th-primary text-light mt-5 btn-sm mt-2 w-100">
                                                     Add to cart
                                                 </button>
                                             </form>
