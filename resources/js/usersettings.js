@@ -1,13 +1,27 @@
 import Swal from "sweetalert2";
 
-const button = document.getElementById("changePasswordBtn");
-const form = document.getElementById("changePasswordForm");
+const passwordButton = document.getElementById("changePasswordBtn");
+const passwordForm = document.getElementById("changePasswordForm");
 
-button.addEventListener("click", () => {
-    form.classList.remove("d-none");
+const emailButton = document.getElementById("changeEmailBtn");
+const emailForm = document.getElementById("changeEmailForm");
+
+passwordButton.addEventListener("click", () => {
+    passwordForm.classList.remove("d-none");
     Swal.fire({
         title: "<strong>Change Password</strong>",
-        html: form,
+        html: passwordForm,
+        showCloseButton: true,
+        showConfirmButton: false,
+        showCancelButton: false,
+    });
+});
+
+emailButton.addEventListener("click", () => {
+    emailForm.classList.remove("d-none");
+    Swal.fire({
+        title: "<strong>Change Email</strong>",
+        html: emailForm,
         showCloseButton: true,
         showConfirmButton: false,
         showCancelButton: false,

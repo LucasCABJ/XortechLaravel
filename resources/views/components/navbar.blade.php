@@ -1,4 +1,5 @@
-<nav class="navbar bg-th-secondary sticky-top navbar-expand-md shadow-sm border-th-primary border-bottom" data-bs-theme="dark">
+<nav class="navbar bg-th-secondary sticky-top navbar-expand-md shadow-sm border-th-primary border-bottom"
+     data-bs-theme="dark">
     <div class="container d-flex justify-content-between">
         <a class="navbar-brand text-light" href="{{ route('home') }}">
                 <span class="logo justify-content-center align-items-center p-0">
@@ -35,6 +36,9 @@
                         {{ __('Product') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="navLink" href="{{ route('contact.create') }}">Contact</a>
+                </li>
 
             </ul>
             <!-- Right Side Of Navbar -->
@@ -68,7 +72,12 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('user.settings') }}">{{ __('Settings') }}</a>
 
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ route('purchase-orders.index') }}">{{ __('My Purchases') }}</a>
+
+                            <!-- Agregar otra barra horizontal -->
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

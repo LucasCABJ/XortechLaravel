@@ -117,11 +117,7 @@
 
                                         <div class="d-flex justify-content-between mb-4">
                                             <h5 class="text-uppercase mb-3">Shipping</h5>
-                                            @if($shoppingCart->count() == 0)
-                                                <h5>${{ $shipping = 0.00 }}</h5>
-                                            @else
-                                                <h5>${{ $shipping = 50.00 }}</h5>
-                                            @endif
+                                            <h5>${{ $shipping = 0.00 }}</h5>
                                         </div>
 
 
@@ -132,9 +128,10 @@
                                             <h5>${{ $total + $shipping }}</h5>
                                         </div>
 
-                                        <button type="button" class="btn btn-dark btn-block btn-lg"
-                                                data-mdb-ripple-color="dark">Check Out
-                                        </button>
+                                        <form action="{{ route('checkout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Check Out</button>
+                                        </form>
 
                                     </div>
                                 </div>

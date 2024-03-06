@@ -16,13 +16,15 @@
 
                     <h1 class="text-center mb-5">{{ __('Login to XorTech') }}</h1>
 
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                    @if(session('error'))
+                        <div id="errorMessage" data-error="{{ session('error') }}"></div>
+                    @endif
 
+                    <form method="POST" action="{{ route('login') }}" class="needs-validation">
+                        @csrf
                         <div class="row mb-3">
                             <div class="col-lg-8 offset-lg-2">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror fs-4" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{__('Email')}}">
-
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -76,4 +78,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    @vite(['resources/js/errorMessage.js'])
 @endsection

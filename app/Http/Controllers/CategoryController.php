@@ -30,15 +30,13 @@ class CategoryController extends Controller
     public function indexVendor(): View
     {
 
-        $categories = Category::get()
-            ->orderBy('name')
-            ->get();
-        return view('category.index', compact('categories'));
+        $categories = Category::orderBy('name')->get();
+        return view('vendor.category.index', compact('categories'));
     }
 
     public function create(): View
     {
-        return view('category.create');
+        return view('vendor.category.create');
     }
 
     public function store(CategoryRequest $request): RedirectResponse
@@ -55,7 +53,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category): View
     {
-        return view('category.edit', compact('category'));
+        return view('vendor.category.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, Category $category): RedirectResponse

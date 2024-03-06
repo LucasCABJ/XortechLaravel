@@ -28,10 +28,10 @@ class User extends Authenticatable
         'active'
     ];
 
-    public function images(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
+    // public function images(): MorphOne
+    // {
+    //     return $this->morphOne(Image::class, 'imageable');
+    // }
 
     public function role(): BelongsTo
     {

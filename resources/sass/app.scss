@@ -21,6 +21,14 @@ $custom-theme-colors: (
     "th-grey": #A4B3B6 
     );
 
+// CUSTOM SELECT
+
+$form-select-color: map-get($map: $custom-theme-colors, $key: "th-secondary");
+$form-select-border-color: map-get($map: $custom-theme-colors, $key: "th-info");
+$form-select-focus-box-shadow: 0 0 0px 0px rgba(map-get($map: $custom-theme-colors, $key: "th-info"), 0);
+$form-select-focus-width: 0px;
+$form-select-focus-border-color:  map-get($map: $custom-theme-colors, $key: "th-info");
+
 // CUSTOM PAGINATION
 $pagination-color:     map-get($map: $custom-theme-colors, $key: "th-secondary");
 $pagination-hover-color: map-get($map: $custom-theme-colors, $key: "th-info"); 

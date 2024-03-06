@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
+    /**
+    *--------------------------------------------------------------------------
+    * Register Controller
+    *--------------------------------------------------------------------------
+    *
+    * This controller handles the registration of new users as well as their
+    * validation and creation. By default this controller uses a trait to
+    * provide this functionality without requiring any additional code.
+    *
     */
 
     use RegistersUsers;
@@ -69,11 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
-
-        // Crea la relación polimórfica en la tabla de imágenes con la imagen por defecto
-        $user->images()->create([
-            'url' => 'assets/img/default-male.png',
+            'image' => ""
         ]);
 
         return $user;

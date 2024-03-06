@@ -1,8 +1,4 @@
-@if(Auth::user()->role == 'admin' || Auth::user()->role == 'vendor')
-    @extends('layouts.admin-layout')
-@else
-    @extends('layouts.app')
-@endif
+@extends('layouts.app')
 
 @section('content')
 

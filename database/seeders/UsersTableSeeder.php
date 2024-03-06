@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'juan.pardo@davinci.edu.ar',
             'password' => Hash::make('12345678'),
             'role_id' => 1,
+            'image' => '1708403501juani.jpg',
         ]);
         User::create([
             'name' => 'Lucas',
