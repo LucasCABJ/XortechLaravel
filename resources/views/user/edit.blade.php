@@ -17,6 +17,8 @@
         @vite(['resources/js/successPasswordUpdate.js'])
     @elseif(Session::has('userUpdated'))
         @vite(['resources/js/successAccountUpdate.js'])
+    @elseif(Session::has('invalidId'))
+        @vite(['resources/js/errorUserSettings.js'])
     @endif
 
     @if ($errors->has('email') || $errors->has('password') || $errors->has('image'))
@@ -34,7 +36,8 @@
 
                                 <div class="row">
                                     <div class="col-lg-5 d-lg-block d-flex justify-content-center align-items-center">
-                                        <form action="{{ route('user.edit_profile_pic', $user->id) }}" class="d-none p-3" method="POST" id="profilepic-upload-form" enctype="multipart/form-data">
+                                        <form action="{{ route('user.edit_profile_pic', $user->id) }}" class="d-none p-3"
+                                            method="POST" id="profilepic-upload-form" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="row mb-3">
@@ -42,7 +45,7 @@
                                                     <input id="image" type="file"
                                                         class="form-control @error('image') is-invalid @enderror fs-4"
                                                         name="image" value="{{ old('image') }}" autocomplete="image">
-        
+
                                                     @error('image')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -50,27 +53,59 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                            
+
                                             <div class="row mb-0">
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-th-primary text-white rounded-0 w-100 fs-4">
+                                                    <button type="submit"
+                                                        class="btn btn-th-primary text-white rounded-0 w-100 fs-4">
                                                         {{ __('Update') }}</i>
                                                     </button>
                                                 </div>
                                             </div>
                                         </form>
-                                        <div class="rounded position-relative profilepic-container" id="profilepic-container" style="aspect-ratio : 1 / 1;">
-                                            <div class="position-absolute bg-dark rounded justify-content-center align-items-center profilepic-change"><i class="bg-dark fa-solid fa-pencil text-white h1"></i></div>
-                                            <img src="@if($user->image == "" || !Storage::disk("local")->has("public/images/usup/".$user->image)){{asset('assets/img/default-male.png') }}@else{{asset('storage/images/usup/'.$user->image)}} @endif" class="rounded border border-th-grey border-2"
-                                                alt="Current Profile Picture"
+                                        <div class="rounded position-relative profilepic-container"
+                                            id="profilepic-container" style="aspect-ratio : 1 / 1;">
+                                            <div
+                                                class="position-absolute bg-dark rounded justify-content-center align-items-center profilepic-change">
+                                                <i class="bg-dark fa-solid fa-pencil text-white h1"></i>
+                                            </div>
+                                            <img src="@if ($user->image == '' || !Storage::disk('local')->has('public/images/usup/' . $user->image)) {{ asset('assets/img/default-male.png') }}@else{{ asset('storage/images/usup/' . $user->image) }} @endif"
+                                                class="rounded border border-th-grey border-2" alt="Current Profile Picture"
                                                 style="height: 100%; width:100%; object-fit:cover">
 
                                         </div>
                                     </div>
                                     <div class="col-lg-7 pt-3">
                                         <h1 class="text-th-secondary">{{ $user->name }} <span
-                                            class="h6 text-th-grey">({{ $user->email }})</span></h1>
-                                        <h3 class="h6 text-th-grey bg-secondary d-inline-block py-2 px-3">{{ ucfirst($user->role->name) }}</h3>
+                                                class="h6 text-th-grey">({{ $user->email }})</span></h1>
+                                        <form class="w-100 mb-3" action="{{ route('user.update_role', $user->id) }}"
+                                            method="POST" id="changeRoleForm">
+                                            @csrf
+                                            @method('PUT')
+                                            <select class="form-select d-lg-inline-block w-50 outline-th-secondary rounded-0" name="role_id">
+                                                <option value="{{ $user->role->id }}" selected>
+                                                    {{ ucfirst($user->role->name) }}
+                                                </option>
+                                                @if ($user->role->name == 'admin')
+                                                    <option value="2">
+                                                        Vendor</option>
+                                                    <option value="3">
+                                                        Customer</option>
+                                                @elseif ($user->role->name == 'vendor')
+                                                    <option value="1">
+                                                        Admin</option>
+                                                    <option value="3">
+                                                        Customer</option>
+                                                @else
+                                                    <option value="1">
+                                                        Admin</option>
+                                                    <option value="2">
+                                                        Vendor</option>
+                                                @endif
+                                            </select>
+                                            <button type="submit"
+                                                class="btn btn-th-info text-white rounded-0 w-50 d-inline-block">{{ __('Update Role') }}</button>
+                                        </form>
 
                                         <form action="{{ route('user.edit_password', $user->id) }}" method="POST"
                                             id="changePasswordForm" class="d-none p-3">
@@ -98,14 +133,15 @@
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="btn btn-th-primary text-white fs-3 rounded-0">{{ __('Update Password') }}</button>
+                                                class="btn btn-th-info text-white fs-3 rounded-0">{{ __('Update Password') }}</button>
                                         </form>
 
                                         <button type="button" id="changePasswordBtn" data-micromodal-trigger="modal-1"
-                                            class="d-block w-50 mb-2 py-2 mb-2 w-75 px-3 fs-5 btn btn-th-primary rounded-0 text-white">{{ __('Edit Password') }}</button>
+                                            class="d-block w-50 mb-2 py-2 mb-2 w-75 px-3 fs-5 btn btn-th-info rounded-0 text-white d-flex justify-content-center align-items-center"><i
+                                                class="fa-solid fa-key pe-2"></i>{{ __('Edit Password') }}</button>
 
-                                            <form action="{{ route('user.update_user_email', $user->id) }}" method="POST" id="changeEmailForm"
-                                            class="d-none p-3">
+                                        <form action="{{ route('user.update_user_email', $user->id) }}" method="POST"
+                                            id="changeEmailForm" class="d-none p-3">
                                             @csrf
                                             @method('PUT')
                                             <div class="row mb-3">
@@ -129,25 +165,29 @@
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="btn btn-th-primary text-white fs-3 rounded-0">{{ __('Update Email') }}</button>
+                                                class="btn btn-th-info text-white fs-3 rounded-0 d-flex justify-content-center align-items-center">{{ __('Update Email') }}</button>
                                         </form>
 
                                         <button type="button" id="changeEmailBtn" data-micromodal-trigger="modal-1"
-                                            class="d-block py-2 px-3 fs-5 w-75 mb-2 btn btn-th-primary rounded-0 text-white">{{ __('Change Email') }}</button>
+                                            class="d-block py-2 px-3 fs-5 w-75 mb-2 btn btn-th-info rounded-0 text-white d-flex justify-content-center align-items-center"><i
+                                                class="fa-solid fa-envelope pe-2"></i>{{ __('Change Email') }}</button>
 
                                         @if ($user->active == 1)
                                             <form action="{{ route('user.delete', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    class="d-block w-50 py-2 px-3 fs-5 w-75 btn btn-danger rounded-0 text-white">{{ __('Inactivate User') }}</button>
+                                                    class="d-block w-50 py-2 px-3 fs-5 w-75 btn btn-danger rounded-0 text-white d-flex justify-content-center align-items-center"><i
+                                                        class="fa-solid fa-user-minus pe-2"></i>
+                                                    {{ __('Inactivate User') }}</button>
                                             </form>
                                         @else
                                             <form action="{{ route('user.reactivate', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit"
-                                                    class="d-block w-50 py-2 px-3 fs-5 w-75 btn btn-success rounded-0 text-white">{{ __('Activate User') }}</button>
+                                                    class="d-block w-50 py-2 px-3 fs-5 w-75 btn btn-success rounded-0 text-white d-flex justify-content-center align-items-center"><i
+                                                        class="fa-solid fa-user-plus"></i>{{ __('Activate User') }}</button>
                                             </form>
                                         @endif
 
@@ -155,61 +195,6 @@
                                 </div>
 
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-8 offset-md-2">
-                        <div class="card shadow-sm">
-
-                            <div class="card-body p-5">
-
-                                <h2 class="text-bold mb-3">{{ __('User Settings') }}</h2>
-
-                                <form method="POST" action="{{ route('user.update-user', $user->id) }}"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="row mb-3">
-                                        <div class="col-12">
-                                            <label for="name" class='form-label'>{{ __('Name') }}</label>
-                                            <input id="name" type="text"
-                                                class="form-control @error('name') is-invalid @enderror fs-4" name="name"
-                                                value="{{ $user->name }}" autocomplete="name"
-                                                placeholder="{{ __('Name') }}">
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    {{-- <div class="row mb-5">
-                                        <div class="col-12">
-                                            <label for="email" class='form-label'>Email</label>
-                                            <input id="email" type="email"
-                                                class="form-control @error('email') is-invalid @enderror fs-4"
-                                                name="email" value="{{ $user->email }}" autocomplete="email"
-                                                placeholder="{{ __('Email') }}">
-
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                     --}}
-                                    <div class="row mb-0">
-                                        <div class="col-12">
-                                            <button type="submit"
-                                                class="btn btn-th-primary text-white rounded-0 w-100 fs-4">
-                                                {{ __('Update User') }}<i class="fa-regular fa-pen-to-square ms-2"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>

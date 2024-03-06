@@ -246,4 +246,28 @@ class UserController extends Controller
         return redirect()->back()->with('userUpdated', true);
 
     }
+
+    function updateUserRole(User $user, Request $request) {
+
+        $request->validate([
+            'role_id' => 'required'
+        ]);
+    
+        $id = intval($request->role_id);
+
+        if($user->id == Auth::user()->id) {
+            return redirect()->back()->with('invalidId', true);
+        }
+
+        if($id < 1 || $id > 3) {
+            return redirect()->back()->with('invalidId', true);
+        }
+
+        $user->update([
+            'role_id' => $id
+        ]);
+
+        return redirect()->back()->with('userUpdated', true);
+
+    }
 }
