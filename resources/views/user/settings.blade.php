@@ -101,11 +101,12 @@
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="btn btn-th-primary text-white fs-3 rounded-0">{{ __('Update Password') }}</button>
+                                                class="btn btn-th-info text-white fs-3 rounded-0">{{ __('Update Password') }}</button>
                                         </form>
 
                                         <button type="button" id="changePasswordBtn" data-micromodal-trigger="modal-1"
-                                            class="d-block py-2 px-3 fs-5 mb-2 w-75 btn btn-th-primary rounded-0 text-white">{{ __('Change Password') }}</button>
+                                            class="d-block w-50 mb-2 py-2 mb-2 w-75 px-3 fs-5 btn btn-th-info rounded-0 text-white d-flex justify-content-center align-items-center"><i
+                                                class="fa-solid fa-key pe-2"></i>{{ __('Edit Password') }}</button>
 
 
                                         <form action="{{ route('user.update_email') }}" method="POST" id="changeEmailForm"
@@ -133,11 +134,12 @@
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="btn btn-th-primary text-white fs-3 rounded-0">{{ __('Update Email') }}</button>
+                                                class="btn btn-th-info text-white fs-3 rounded-0">{{ __('Update Email') }}</button>
                                         </form>
 
                                         <button type="button" id="changeEmailBtn" data-micromodal-trigger="modal-1"
-                                            class="d-block py-2 px-3 fs-5 w-75 btn btn-th-primary rounded-0 text-white">{{ __('Change Email') }}</button>
+                                            class="d-block py-2 px-3 fs-5 w-75 mb-2 btn btn-th-info rounded-0 text-white d-flex justify-content-center align-items-center"><i
+                                                class="fa-solid fa-envelope pe-2"></i>{{ __('Change Email') }}</button>
 
                                     </div>
                                 </div>

@@ -54,6 +54,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::put('user/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
     Route::put('user/update_email', [UserController::class, 'updateEmail'])->name('user.update_email');
     Route::put('user/update_email/{user}', [UserController::class, 'updateUserEmail'])->name('user.update_user_email');
+    Route::put('user/update_role/{user}', [UserController::class, 'updateUserRole'])->name('user.update_role');
     Route::put('user/update_pic', [UserController::class, 'updateProfilePic'])->name('user.update_profile_pic');
     Route::put('user/update_pic/{user}', [UserController::class, 'editProfilePic'])->name('user.edit_profile_pic');
     Route::put('user/update_password/{user}', [UserController::class, 'editPassword'])->name('user.edit_password');
