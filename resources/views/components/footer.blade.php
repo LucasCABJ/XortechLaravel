@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-lg-6 d-flex-column align-items-center justify-content-center">
-                <p class="text-light text-center fs-5">Veni a XorTech y llevate los mejores componentes!</p>
+                <p class="text-light text-center fs-5">In XorTech we have everything a gamer needs!</p>
                 <div class="d-flex align-items-center justify-content-center mb-2">
                     <a href="#"><i class="fa-brands fa-twitter link-light fs-2 px-3"></i></a>
                     <a href="#"><i class="fa-brands fa-facebook link-light fs-2 px-3"></i></a>
