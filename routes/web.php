@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -40,6 +41,10 @@ Route::middleware(['auth','admin', 'active'])->group(function (){
 
     //Ruta para ver las categorias para el Admin
     Route::get('vendor/category/index', [CategoryController::class, 'indexVendor'])->name('vendor.category.index');
+
+    //Rutas de contacto para admin
+
+
 });
 
 // RUTAS USUARIO (UserController)
@@ -68,7 +73,12 @@ Route::resource('product', ProductController::class)
     ]);
 
 // Ruta de Contacto
-Route::get('/contact', [App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
+Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::get('/contact/{id}', [ContactController::class, 'show'])->name('contact.show');
+Route::put('/contact/{id}', [ContactController::class, 'update'])->name('contact.update');
+
 
 // Rutas para Categorías
 Route::resource('category', CategoryController::class);

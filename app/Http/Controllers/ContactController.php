@@ -66,7 +66,7 @@ class ContactController extends Controller
         $contact = Contact::findOrFail($id);
 
         // Return the view to show the contact details
-        return view('contacts.show', compact('contact'));
+        return view('contact.show', compact('contact'));
     }
 
     /**
@@ -96,7 +96,7 @@ class ContactController extends Controller
         $contact->update(['read' => true]);
 
         // Redirect back to the contact's details page
-        return redirect()->route('contacts.show', $id)->with('success', 'Contact marked as read successfully.');
+        return redirect()->route('contact.index', $id)->with('success', 'Contact marked as read successfully.');
     }
 
     /**

@@ -36,6 +36,9 @@
                         {{ __('Product') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="navLink" href="{{ route('contact.create') }}">Contact</a>
+                </li>
 
             </ul>
             <!-- Right Side Of Navbar -->

@@ -120,6 +120,20 @@
                 </div>
             </div>
         </div>
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                    <i class="fa-solid fa-envelope me-2"></i> CONTACTS
+                </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <a href="{{ route('contact.index') }}" class="nav-link">View Messages</a>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
