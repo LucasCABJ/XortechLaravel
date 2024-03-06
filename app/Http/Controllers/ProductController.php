@@ -16,15 +16,18 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $categories = Category::where('active', true)
             ->orderBy('name')
             ->get();
 
         $products = Product::where('active', true)
+            ->when($request->filled('search'), function ($query) use ($request) {
+                return $query->where('name', 'like', '%' . $request->input('search') . '%');
+            })
             ->orderBy('name')
-            ->get();
+            ->paginate(5);
 
         //get first image from each product
         foreach ($products as $product) {
@@ -34,8 +37,7 @@ class ProductController extends Controller
         return view('product.index', compact('products', 'categories'));
     }
 
-    public
-    function create(): View
+    public function create(): View
     {
         $categories = Category::where('active', true)
             ->orderBy('name')
@@ -43,21 +45,18 @@ class ProductController extends Controller
         return view('vendor.product.create', compact('categories'));
     }
 
-    public
-    function store(ProductRequest $request): RedirectResponse
+    public function store(ProductRequest $request): RedirectResponse
     {
         Product::create($request->all());
         return redirect()->route('vendor.product.index')->with('success', 'Product created successfully.');
     }
 
-    public
-    function show(Product $product): View
+    public function show(Product $product): View
     {
         return view('product.show', compact('product'));
     }
 
-    public
-    function edit(Product $product): View
+    public function edit(Product $product): View
     {
         $images = $product->images()->orderBy('position')->get();
         $categories = Category::where('active', true)
@@ -66,8 +65,7 @@ class ProductController extends Controller
         return view('vendor.product.edit', compact('product', 'categories', 'images'))->with('success', 'Product updated successfully.');
     }
 
-    private
-    function processAndStoreImages(Request $request, Product $product): void
+    private function processAndStoreImages(Request $request, Product $product): void
     {
         $category = Category::where('id', $product->category_id)->first()->name;
 
@@ -96,8 +94,7 @@ class ProductController extends Controller
         }
     }
 
-    public
-    function update(Request $request, Product $product): RedirectResponse
+    public function update(Request $request, Product $product): RedirectResponse
     {
         $data = $request->only(['name', 'short_desc', 'long_desc', 'price', 'category_id']);
         $data['active'] = $request->has('active');
@@ -117,17 +114,23 @@ class ProductController extends Controller
         // Llama al método para procesar y almacenar imágenes
         $this->processAndStoreImages($request, $product);
 
-        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('vendor.product.index')->with('success', 'Product updated successfully.');
     }
 
-    public
-    function destroy(Product $product): RedirectResponse
+    public function destroy(Product $product): RedirectResponse
     {
         $product->update(['active' => false]);
-        return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('vendor.product.index')->with('success', 'Product deleted successfully.');
     }
 
-    function home()
+    public function reactivate(Product $product): RedirectResponse
+    {
+        $product->update(['active' => true]);
+        return redirect()->route('vendor.product.index')->with('success', 'Product reactivated successfully.');
+    }
+
+
+    public function home()
     {
         // Get a random product to show in the home page Hero
         $heroProduct = Product::where('active', true)
@@ -146,11 +149,13 @@ class ProductController extends Controller
         return view('product.home', compact('heroProduct', 'bannerProduct'));
     }
 
-    public
-    function vendor(): View
+    public function vendor(Request $request): View
     {
         $products = Product::orderBy('name')
-            ->get();
+            ->when($request->filled('search'), function ($query) use ($request) {
+                return $query->where('name', 'like', '%' . $request->input('search') . '%');
+            })
+            ->paginate(5);
         return view('vendor.product.index', compact('products'));
     }
 

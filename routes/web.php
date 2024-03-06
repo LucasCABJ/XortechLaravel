@@ -29,6 +29,7 @@ Route::middleware(['auth','admin', 'active'])->group(function (){
             'store' => 'vendor.product.store',
         ]);
     Route::get('/vendor/product/index', [ProductController::class, 'vendor'])->name('vendor.product.index');
+    Route::put('/vendor/product/update/{product}', [ProductController::class, 'reactivate'])->name('vendor.product.reactivate');
 
     Route::post('/product/storeImages/{product}', [ProductController::class, 'storeImages'])->name('product.storeImages');
 

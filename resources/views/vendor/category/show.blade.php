@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin-layout')
 
 @section('content')
     @component('components.navbar')
     @endcomponent
 
-    <div class="container mt-4">
+    <div class="container my-4">
         <a href="{{ route('category.index') }}" class="btn btn-secondary mb-3">Back</a>
 
         <h1 class="display-4">Category</h1>

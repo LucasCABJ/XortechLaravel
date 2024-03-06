@@ -1,21 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.admin-layout')
 
 @section('content')
 
     @component('components.navbar')
     @endcomponent
 
-    <div class="container mt-4">
+    <div class="container my-4">
 
-        <a href="{{ route('category.create') }}" class="btn btn-primary">Create Category</a>
+        <a href="{{ route('category.create') }}" class="btn btn-th-primary text-light mb-3 ms-2"><i class="fas fa-plus"></i> Create Category</a>
 
-        <h2>Categories</h2>
+        <h2 class="ms-2">Categories</h2>
 
         @if(count($categories) > 0)
             <table class="table mt-3">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Actions</th>
                 </tr>
@@ -23,17 +22,16 @@
                 <tbody>
                 @foreach($categories as $category)
                     <tr>
-                        <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <a href="{{ route('category.show', $category->id) }}" class="btn btn-info">View</a>
-                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('category.destroy', $category->id) }}" method="POST"
+                            <a href="{{ route('category.show', $category->id) }}" class="btn btn-th-info me-2"><i class="fas fa-eye"></i> View</a>
+                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-outline-warning text-warning-emphasis"><i class="fas fa-edit"></i> Edit</a>
+                            {{--<form action="{{ route('category.destroy', $category->id) }}" method="POST"
                                   class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                            </form>--}}
                         </td>
                     </tr>
                 @endforeach

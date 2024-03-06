@@ -23,7 +23,6 @@
 
     <main>
         <form action="{{ route('vendor.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
-
             @csrf
             @method('PUT')
             <div class="row justify-content-between align-items-center">

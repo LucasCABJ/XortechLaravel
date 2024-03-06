@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
     public function create(): View
     {
-        return view('category.create');
+        return view('vendor.category.create');
     }
 
     public function store(CategoryRequest $request): RedirectResponse
@@ -48,12 +48,12 @@ class CategoryController extends Controller
 
     public function show(Category $category): View
     {
-        return view('category.show', compact('category'));
+        return view('vendor.category.show', compact('category'));
     }
 
     public function edit(Category $category): View
     {
-        return view('category.edit', compact('category'));
+        return view('vendor.category.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, Category $category): RedirectResponse

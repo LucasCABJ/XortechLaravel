@@ -7,6 +7,18 @@
 
     <section style="background-color: #eee;">
         <div class="container py-5">
+            <form action="{{ route('product.index') }}">
+                <div class="row justify-content-center mb-3">
+                    <div class="col-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search products" value="{{ request('search') }}">
+                            <button class="btn btn-th-info text-light me-2" type="submit">Search</button>
+                            <a href="{{ route('product.index') }}" class="btn btn-outline-th-primary ms-2">Clear</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
             @foreach($products as $product)
                 <div class="row justify-content-center mb-3">
                     <div class="col-md-12 col-xl-10">
@@ -57,6 +69,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $products->links() }}
         </div>
     </section>
 
